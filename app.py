@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from ai_agent import tanya_ai_pertanian  # Tambahkan import ini
 from ai_agent import tanya_ai_sim  # Tambahkan import ini
 from ai_agent import tanya_ai_layanan_darurat  # Tambahkan import ini
+from ai_agent import tanya_ai_hukum  # Tambahkan import ini
 
 app = Flask(__name__)
 
@@ -40,6 +41,10 @@ def panduan_bertani_di_rawa():
 def bantuan_layanan_darurat():
     return render_template("bantuan_layanan_darurat.html")
 
+@app.route('/panduan_hukum')
+def bantuan_layanan_darurat():
+    return render_template("panduan_hukum.html")
+
 @app.route('/sim', methods=['GET', 'POST'])
 def sim():
     response = ""
@@ -63,6 +68,14 @@ def darurat():
         question = request.form['question']
         response = tanya_ai_layanan_darurat(question)
     return render_template("darurat.html", response=response)
+
+@app.route('/hukum', methods=['GET', 'POST'])
+def hukum():
+    response = ""
+    if request.method == 'POST':
+        question = request.form['question']
+        response = tanya_ai_hukum(question)
+    return render_template("hukum.html", response=response)
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -92,3 +92,35 @@ def tanya_ai_layanan_darurat(query):
         return response.json()['choices'][0]['message']['content']
     return "⚠️ Gagal menghubungi AI."
 
+def tanya_ai_hukum(query):
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
+
+    body = {
+        "model": MODEL,
+        "messages": [
+            {
+                "role": "system",
+                "content": (
+                    "Kamu adalah asisten AI hukum yang membantu warga Indonesia memahami hukum, pasal, dan hak yang berlaku. "
+                    "Jawabanmu harus berdasarkan hukum positif Indonesia, seperti UUD 1945, KUHP, KUHPerdata, dan UU resmi seperti UU No. 11 Tahun 2008 tentang ITE, UU No. 36 Tahun 2009 tentang Kesehatan, dan lainnya. "
+                    "Sertakan referensi pasal atau undang-undang jika memungkinkan. "
+                    "Jika pertanyaan tidak relevan dengan topik hukum, kamu harus membalas dengan sopan seperti: "
+                    "'Maaf, saya hanya dapat membantu seputar pertanyaan yang berkaitan dengan hukum dan perundang-undangan yang berlaku di Indonesia.'"
+                )
+            },
+            {
+                "role": "user",
+                "content": query
+            }
+        ]
+    }
+
+    response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=body)
+    if response.status_code == 200:
+        return response.json()['choices'][0]['message']['content']
+    return "⚠️ Gagal menghubungi AI."
+
+
