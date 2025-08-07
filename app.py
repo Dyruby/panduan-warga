@@ -42,7 +42,7 @@ def bantuan_layanan_darurat():
     return render_template("bantuan_layanan_darurat.html")
 
 @app.route('/panduan_hukum')
-def bantuan_layanan_darurat():
+def panduan_hukum():
     return render_template("panduan_hukum.html")
 
 @app.route('/sim', methods=['GET', 'POST'])
