@@ -1,7 +1,11 @@
+import os
+from dotenv import load_dotenv
 import requests
 
-API_KEY ="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"# Ganti dengan API key milikmu
+load_dotenv()
+API_KEY = os.getenv("OPENROUTER_API_KEY")
 MODEL = "meta-llama/llama-3-8b-instruct"
+
 
 def tanya_ai_pertanian(query):
     headers = {
