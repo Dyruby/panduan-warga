@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+{% block title %}Layanan Darurat{% endblock %}
+
+{% block content %}
+<div class="glass p-8 rounded-xl shadow-xl">
+  <h2 class="text-3xl font-bold text-red-400 mb-6">🚨 Kontak Emergensi</h2>
+  <p class="text-white mb-4">Layanan ambulan gratis Kota Banjarmasin</p>
+
+  <!-- Call Center -->
+  <div class="text-center mb-6">
+    <a href="tel:119" class="inline-block bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-semibold transition">
+      📞 Call Center 119 / 112 (Bebas Pulsa)
+    </a>
+  </div>
+
+  <!-- Kontak Kecamatan -->
+  <div class="space-y-4 text-white">
+    {% set kontak = [
+      {"kecamatan": "Banjarmasin Selatan", "telp": "+62 811-5022-911"},
+      {"kecamatan": "Banjarmasin Timur", "telp": "+62 812-4193-7189"},
+      {"kecamatan": "Banjarmasin Utara", "telp": "+62 851-2404-5998"},
+      {"kecamatan": "Banjarmasin Barat", "telp": "+62 838-9775-8138"},
+      {"kecamatan": "Banjarmasin Tengah", "telp": "+62 838-9775-8137"},
+      {"kecamatan": "PSC 119 Banjarmasin", "telp": "+62 811-5033-119"}
+    ] %}
+
+    {% for k in kontak %}
+    <div class="flex justify-between items-center bg-white/10 px-4 py-3 rounded-lg shadow border border-white/20">
+      <div>
+        <h4 class="font-bold text-lg text-pink-300">{{ k.kecamatan }}</h4>
+        <p class="text-sm">{{ k.telp }}</p>
+      </div>
+      <div class="flex gap-2">
+        <a href="tel:{{ k.telp | replace(' ', '') }}" class="bg-gray-800 hover:bg-gray-700 text-white p-2 rounded-full">
+          📞
+        </a>
+        <a href="https://wa.me/{{ k.telp | replace('+62 ', '62') | replace('-', '') }}" target="_blank" class="bg-green-600 hover:bg-green-700 text-white p-2 rounded-full">
+          💬
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <!-- Lokasi Layanan Darurat -->
+<div class="mt-10">
+  <h3 class="text-2xl font-bold text-white mb-4">🏥 Lokasi Rumah Sakit & Kantor Polisi 24 Jam</h3>
+
+  {% set lokasi_darurat = [
+    {
+      "nama": "RSUD Ulin Banjarmasin",
+      "alamat": "Jl. A. Yani Km. 1,5 No. 41, Banjarmasin",
+      "jam": "Buka 24 jam",
+      "maps": "https://maps.google.com/?q=RSUD+Ulin+Banjarmasin",
+      "situs": "https://rsudulin.banjarmasinkota.go.id",
+      "jenis": "Rumah Sakit"
+    },
+    {
+      "nama": "RSUD Sultan Suriansyah",
+      "alamat": "Jl. Rantauan Darat No.10, Banjarmasin",
+      "jam": "Buka 24 jam",
+      "maps": "https://maps.google.com/?q=RSUD+Sultan+Suriansyah",
+      "situs": "https://rsudsultansuriansyah.banjarmasinkota.go.id",
+      "jenis": "Rumah Sakit"
+    },
+    {
+      "nama": "Polresta Banjarmasin",
+      "alamat": "Jl. Ahmad Yani Km 3.5 No.5, Banjarmasin",
+      "jam": "Buka 24 jam",
+      "maps": "https://maps.google.com/?q=Polresta+Banjarmasin",
+      "situs": "https://banjarmasin.kalsel.polri.go.id",
+      "jenis": "Kantor Polisi"
+    }
+  ] %}
+
+  <div class="space-y-4 text-white">
+    {% for l in lokasi_darurat %}
+    <div class="bg-white/10 px-4 py-4 rounded-lg shadow border border-white/20">
+      <div class="flex items-center justify-between">
+        <div>
+          <h4 class="text-lg font-semibold text-yellow-300">
+            {{ "🏥" if l.jenis == "Rumah Sakit" else "🚓" }} {{ l.nama }}
+          </h4>
+          <p class="text-sm text-gray-200">{{ l.alamat }}</p>
+          <p class="text-sm text-green-400 font-medium">{{ l.jam }}</p>
+        </div>
+        <div class="flex gap-2 mt-2 sm:mt-0">
+          <a href="{{ l.maps }}" target="_blank" class="bg-blue-600 hover:bg-blue-700 px-3 py-2 rounded-full text-white text-sm">
+            📍 Rute
+          </a>
+          <a href="{{ l.situs }}" target="_blank" class="bg-gray-700 hover:bg-gray-800 px-3 py-2 rounded-full text-white text-sm">
+            🌐 Situs
+          </a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+  <!-- Panduan Pertolongan Pertama -->
+<div class="mt-10">
+  <h3 class="text-2xl font-bold text-white mb-4">⛑️ Panduan Pertolongan Pertama</h3>
+  <ul class="list-disc pl-6 text-gray-200 space-y-3">
+
+  <h3 class="text-2xl font-bold text-white mb-4">Kasus Kesehatan Umum</h3>
+
+    <li><strong>Luka Bakar Ringan:</strong> Alirkan air dingin selama 10–15 menit. Jangan olesi odol/minyak. Keringkan dan balut dengan kasa steril.</li>
+    <li><strong>Luka Bakar Berat:</strong> Hubungi 119 segera. Jangan cabut pakaian yang menempel. Jangan gunakan es. Jaga suhu tubuh korban tetap hangat.</li>
+    <li><strong>Pingsan:</strong> Baringkan korban miring ke kiri. Angkat kakinya sedikit lebih tinggi dari jantung. Periksa napas. Jangan diberi minum saat tidak sadar.</li>
+    <li><strong>Patah Tulang:</strong> Jangan digerakkan. Gunakan kain/papan keras untuk imobilisasi. Kompres es. Hubungi bantuan medis segera.</li>
+    <li><strong>Pendarahan Hebat:</strong> Tekan langsung luka dengan kain bersih. Angkat bagian luka lebih tinggi dari jantung jika bisa. Balut ketat. Cari bantuan segera.</li>
+    <li><strong>Kejang:</strong> Jangan ditahan. Singkirkan benda berbahaya di sekitar. Miringkan kepala untuk mencegah tersedak. Perhatikan durasi kejang.</li>
+    <li><strong>Asma Kambuh:</strong> Dudukkan korban condong ke depan. Bantu gunakan inhaler (jika ada). Tenangkan korban. Hubungi medis jika tidak membaik dalam 10 menit.</li>
+    <li><strong>Alergi Akut (Anafilaksis):</strong> Hubungi 119. Jika tersedia, suntik epinefrin (EpiPen). Baringkan korban dengan kaki ditinggikan. Longgarkan pakaian.</li>
+    <li><strong>Tersedak (Dewasa):</strong> Beri 5 pukulan punggung. Jika gagal, lanjutkan dengan 5 dorongan Heimlich. Jika tidak sadar, lakukan CPR.</li>
+    <li><strong>Tersedak (Bayi):</strong> Letakkan bayi tengkurap di lengan, beri 5 pukulan punggung, balik dan beri 5 dorongan dada ringan.</li>
+    <li><strong>Serangan Jantung:</strong> Bantu korban duduk. Longgarkan pakaian. Berikan aspirin jika sadar dan tidak alergi. Segera hubungi 119.</li>
+    <li><strong>Stroke:</strong> Lihat gejala FAST (Face, Arms, Speech, Time). Jangan beri makanan/minuman. Segera hubungi 119.</li>
+
+  <h3 class="text-2xl font-bold text-white mb-4">Situasi Terkait Polisi</h3>
+
+    <li><strong>Penyerangan atau Kriminalitas:</strong> Segera cari tempat aman. Jangan lawan jika membahayakan. Laporkan ke 112. Catat ciri pelaku, kendaraan, dan waktu kejadian.</li>
+    <li><strong>Kekerasan Rumah Tangga:</strong> Amankan diri ke tempat yang bisa dikunci. Hubungi 112 atau layanan pengaduan kekerasan. Simpan bukti seperti pesan, foto, rekaman.</li>
+    <li><strong>Penculikan / Hilang:</strong> Segera hubungi polisi (112/110). Berikan ciri fisik, pakaian terakhir, lokasi terakhir terlihat. Sebar informasi ke tetangga dan media sosial resmi.</li>
+    <li><strong>Kecelakaan Lalu Lintas:</strong> Amankan lokasi. Jangan pindahkan korban jika cedera berat. Gunakan segitiga pengaman. Catat kronologi. Laporkan ke polisi dan ambulans.</li>
+    <li><strong>Bom atau Benda Mencurigakan:</strong> Jangan menyentuh benda mencurigakan. Jauhkan diri. Hubungi 112/polisi. Dokumentasikan dari jauh jika aman.</li>
+
+  <h3 class="text-2xl font-bold text-white mb-4">Situasi Terkait Pemadam Kebakaran</h3>
+
+    <li><strong>Kebakaran Rumah:</strong> Evakuasi semua orang secepatnya. Jangan kembali untuk barang. Tutupi mulut dengan kain basah. Hubungi 113 atau 112. Laporkan lokasi secara spesifik.</li>
+    <li><strong>Korsleting Listrik:</strong> Matikan listrik utama jika aman. Gunakan benda isolator (kayu/kain kering) untuk memindahkan korban. Jangan menyiram dengan air.</li>
+    <li><strong>Kebocoran Gas LPG:</strong> Matikan kompor. Jangan nyalakan listrik. Buka jendela. Keluar dari ruangan. Hubungi pemadam 113.</li>
+    <li><strong>Tersesat dalam Kebakaran:</strong> Merangkak rendah (karena asap naik ke atas). Ikuti dinding ke arah keluar. Gunakan cahaya ponsel atau senter untuk memberi tanda posisi.</li>
+    <li><strong>Tangki/Benda Terbakar di Jalan:</strong> Jangan dekati. Jauhkan kendaraan dan orang. Hubungi 113. Jika ada tumpahan cairan, jangan nyalakan api.</li>
+
+  </ul>
+</div>
+
+  <!-- Kembali ke Beranda -->
+  <div class="mt-10 text-center">
+    <a href="/" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Kembali ke Beranda
+    </a>
+  </div>
+</div>
+
+<!-- Script SOS -->
+<script>
+let flashing = false;
+let intervalId;
+
+function triggerSOS() {
+  flashing = true;
+  flashScreen();
+
+  document.getElementById("sosBtn").classList.add("hidden");
+  document.getElementById("stopBtn").classList.remove("hidden");
+
+  // Kirim SMS darurat
+  setTimeout(() => {
+    window.location.href = "sms:+628115033119?body=Darurat!%20Saya%20butuh%20bantuan%20segera%20di%20lokasi%20ini.";
+  }, 800);
+}
+
+function stopSOS() {
+  flashing = false;
+  clearInterval(intervalId);
+  document.body.style.backgroundColor = "";
+  document.getElementById("stopBtn").classList.add("hidden");
+  document.getElementById("sosBtn").classList.remove("hidden");
+}
+
+function flashScreen() {
+  const body = document.body;
+  let on = false;
+
+  intervalId = setInterval(() => {
+    if (!flashing) {
+      clearInterval(intervalId);
+      body.style.backgroundColor = "";
+      return;
+    }
+    body.style.backgroundColor = on ? "#000" : "#fff";
+    on = !on;
+  }, 200);
+}
+</script>
+{% endblock %}

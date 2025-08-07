@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Panduan Pembuatan SIM{% endblock %}
+
+{% block content %}
+<div class="glass p-8 rounded-xl shadow-xl">
+  <h2 class="text-3xl font-bold text-blue-400 mb-6">🛂 Panduan Lengkap Pembuatan SIM</h2>
+
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">Apa itu SIM?</h3>
+    <p class="text-gray-200">SIM (Surat Izin Mengemudi) adalah bukti registrasi dan identifikasi yang diberikan oleh Kepolisian Republik Indonesia kepada seseorang yang memenuhi syarat administrasi, kesehatan jasmani dan rohani, serta lulus uji teori dan praktik untuk mengemudikan kendaraan bermotor.</p>
+  </section>
+
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">Jenis-Jenis SIM</h3>
+    <ul class="list-disc pl-6 text-gray-200">
+      <li><strong>SIM A</strong>: Untuk mobil penumpang dan barang pribadi</li>
+      <li><strong>SIM B1</strong>: Untuk kendaraan berat seperti truk</li>
+      <li><strong>SIM B2</strong>: Untuk kendaraan alat berat dan trailer</li>
+      <li><strong>SIM C</strong>: Untuk sepeda motor</li>
+      <li><strong>SIM D</strong>: Untuk penyandang disabilitas</li>
+    </ul>
+  </section>
+
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">Syarat Administrasi</h3>
+    <ul class="list-decimal pl-6 text-gray-200">
+      <li>Berusia minimal 17 tahun (untuk SIM C dan A)</li>
+      <li>Memiliki KTP elektronik (e-KTP)</li>
+      <li>Sehat jasmani dan rohani (dibuktikan dengan surat dokter)</li>
+      <li>Lulus ujian teori dan praktik</li>
+    </ul>
+  </section>
+
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">Langkah-langkah Membuat SIM</h3>
+    <ol class="list-decimal pl-6 text-gray-200">
+      <li>Datang ke Satpas (Satuan Penyelenggara Administrasi SIM)</li>
+      <li>Mengisi formulir pendaftaran</li>
+      <li>Melampirkan dokumen persyaratan</li>
+      <li>Melakukan pembayaran biaya administrasi</li>
+      <li>Ikut ujian teori</li>
+      <li>Ikut ujian praktik</li>
+      <li>Jika lulus, SIM akan dicetak dan diberikan</li>
+    </ol>
+  </section>
+
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">Biaya Pembuatan SIM</h3>
+    <table class="table-auto text-left text-gray-200 border border-gray-500 w-full">
+      <thead>
+        <tr class="bg-blue-800 text-white">
+          <th class="p-2 border">Jenis SIM</th>
+          <th class="p-2 border">Biaya</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-2 border">SIM A</td>
+          <td class="p-2 border">Rp 120.000</td>
+        </tr>
+        <tr>
+          <td class="p-2 border">SIM C</td>
+          <td class="p-2 border">Rp 100.000</td>
+        </tr>
+        <tr>
+          <td class="p-2 border">SIM D</td>
+          <td class="p-2 border">Rp 50.000</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-sm mt-2 text-gray-400">*Biaya belum termasuk tes kesehatan dan asuransi.</p>
+  </section>
+
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">Tips Lulus Ujian SIM</h3>
+    <ul class="list-disc pl-6 text-gray-200">
+      <li>Pelajari soal ujian teori melalui aplikasi atau buku panduan</li>
+      <li>Latihan mengemudi di lapangan latihan</li>
+      <li>Jangan panik saat ujian, fokus dan tenang</li>
+      <li>Tanyakan prosedur yang belum kamu pahami kepada petugas</li>
+    </ul>
+  </section>
+
+  <div class="text-center mt-8">
+    <a href="/sim/ujian" target="_blank" class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded-md text-white transition">Mau mencoba ujian nya!!</a>
+  </div>
+  <div class="mt-10 text-center">
+    <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Kembali ke Beranda
+    </a>
+</div>
+{% endblock %}

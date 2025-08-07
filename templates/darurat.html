@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Layanan Darurat{% endblock %}
+{% block content %}
+<div class="glass p-8 rounded-2xl shadow-xl">
+  <h2 class="text-3xl font-bold text-red-400 mb-6">🚨 ChatBot Layanan Darurat</h2>
+  
+  <form method="post" class="space-y-4">
+    <input
+      type="text"
+      name="question"
+      placeholder="Tanyakan seputar layanan darurat seperti ambulans, polisi, atau pemadam..."
+      class="w-full p-3 rounded-lg bg-red-900/30 border border-red-500 text-white placeholder-red-300 focus:outline-none focus:ring focus:ring-red-400"
+      required
+    />
+    <button
+      type="submit"
+      class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-full font-bold transition"
+    >
+      Kirim Pertanyaan
+    </button>
+  </form>
+
+  {% if response %}
+  <div class="mt-6 p-4 bg-red-800/30 border border-red-500 rounded-xl text-red-100">
+    <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
+    <p>{{ response }}</p>
+  </div>
+  {% endif %}
+
+  <div class="mt-10 text-center">
+    <a href="/" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Kembali ke Beranda
+    </a>
+  </div>
+</div>
+{% endblock %}

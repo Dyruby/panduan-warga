@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Hasil Ujian{% endblock %}
+{% block content %}
+<div class="glass p-6 rounded-xl text-center max-w-md mx-auto mt-10">
+  <h2 class="text-2xl font-bold text-cyan-300 mb-4">Hasil Ujian Kamu</h2>
+  <p class="text-white text-lg">Skor: <strong>{{ skor }}</strong> dari <strong>{{ total }}</strong> soal</p>
+
+  {% if skor == total %}
+    <p class="text-green-400 mt-4">Selamat! Kamu lulus!</p>
+  {% else %}
+    <p class="text-yellow-400 mt-4">Belum lulus, coba lagi ya!</p>
+  {% endif %}
+
+  <a href="/sim/ujian" class="mt-6 inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Ulangi Ujian</a>
+</div>
+<div class="mt-10 text-center">
+    <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Kembali ke Beranda
+    </a>
+{% endblock %}

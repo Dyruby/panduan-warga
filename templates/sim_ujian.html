@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Simulasi Ujian Teori{% endblock %}
+{% block content %}
+<div class="glass p-6 rounded-xl max-w-2xl mx-auto mt-10">
+  <h2 class="text-2xl font-bold text-yellow-400 mb-6">Simulasi Ujian Teori</h2>
+  <form method="POST">
+    <div class="mb-4">
+      <p class="text-white font-semibold">1. Apa arti rambu segitiga merah terbalik?</p>
+      <label><input type="radio" name="jawaban1" value="a"> Dilarang masuk</label><br>
+      <label><input type="radio" name="jawaban1" value="b"> Harus memberi jalan</label><br>
+      <label><input type="radio" name="jawaban1" value="c"> Jalan satu arah</label>
+    </div>
+
+    <div class="mb-4">
+      <p class="text-white font-semibold">2. Apa yang harus dilakukan saat lampu kuning menyala?</p>
+      <label><input type="radio" name="jawaban2" value="a"> Kurangi kecepatan</label><br>
+      <label><input type="radio" name="jawaban2" value="b"> Tambah kecepatan</label><br>
+      <label><input type="radio" name="jawaban2" value="c"> Tetap jalan</label>
+    </div>
+
+    <div class="mb-4">
+      <p class="text-white font-semibold">3. Garis putih putus-putus di jalan berarti?</p>
+      <label><input type="radio" name="jawaban3" value="a"> Dilarang menyalip</label><br>
+      <label><input type="radio" name="jawaban3" value="b"> Harus berhenti</label><br>
+      <label><input type="radio" name="jawaban3" value="c"> Boleh menyalip</label>
+    </div>
+
+    <button type="submit" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md">Lihat Hasil</button>
+  </form>
+</div>
+
+{% endblock %}
