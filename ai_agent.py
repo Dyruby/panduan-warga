@@ -128,6 +128,5 @@ def tanya_ai_hukum(query):
         return response.json()['choices'][0]['message']['content']
     return "⚠️ Gagal menghubungi AI."
 
-if __name__ == "__main__":
-    print(tanya_ai_pertanian("Apa tanaman terbaik untuk rawa?"))
+
 
