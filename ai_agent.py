@@ -1,7 +1,7 @@
 import requests
 
 API_KEY ="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"# Ganti dengan API key milikmu
-MODEL = "meta-llama/llama-3-8b-instruct"
+MODEL = "gpt-3.5-turbo"
 
 def tanya_ai_pertanian(query):
     headers = {
