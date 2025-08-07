@@ -1,6 +1,6 @@
 import requests
 
-API_KEY ="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"# Ganti dengan API key milikmu
+API_KEY ="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"# Ganti dengan API key milikmu
 MODEL = "meta-llama/llama-3-8b-instruct"
 
 def tanya_ai_pertanian(query):
