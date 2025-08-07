@@ -1,3 +1,6 @@
+import os
+from dotenv import load_dotenv
+import requests
 from flask import Flask, render_template, request, redirect, url_for
 from ai_agent import tanya_ai_pertanian  # Tambahkan import ini
 from ai_agent import tanya_ai_sim  # Tambahkan import ini
