@@ -27,11 +27,13 @@
   {% if response %}
   <div class="mt-6 p-4 bg-yellow-800/30 border border-yellow-500 rounded-xl text-yellow-100">
     <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
-    <p id="typingText" data-response="{{ response | tojson }}"></p>
+    <p id="typingText" data-response="{{ response | tojson }}">{{ response }}</p>
     <p class="text-sm mt-4 text-yellow-300 italic">
+      🔍 Sumber jawaban merujuk pada UU dan pasal resmi hukum Indonesia.
     </p>
   </div>
-  {% endif %}
+{% endif %}
+
 
   <div class="mt-10 text-center">
     <a href="/" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full transition">
@@ -50,6 +52,7 @@ document.getElementById("chatForm").addEventListener("submit", function() {
 let typingElement = document.getElementById("typingText");
 if (typingElement) {
   let text = typingElement.dataset.response || "";
+  typingElement.innerHTML = ""; // kosongkan sebelum mulai
   let index = 0;
 
   function typeEffect() {
@@ -67,4 +70,4 @@ if (typingElement) {
   }
 }
 </script>
-{% endblock %}
+  {% endblock %} 
