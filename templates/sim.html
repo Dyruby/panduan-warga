@@ -4,7 +4,7 @@
 <div class="glass p-8 rounded-2xl shadow-xl">
   <h2 class="text-3xl font-bold text-blue-400 mb-6">🛂 ChatBot Pembuatan SIM</h2>
   
-  <form method="post" class="space-y-4">
+  <form id="chatForm" method="post" class="space-y-4">
     <input
       type="text"
       name="question"
@@ -20,10 +20,13 @@
     </button>
   </form>
 
+  <!-- Loading -->
+  <div id="loading" class="mt-6 hidden text-blue-300 italic">💭 Sedang berpikir...</div>
+
   {% if response %}
   <div class="mt-6 p-4 bg-blue-800/30 border border-blue-500 rounded-xl text-blue-100">
     <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
-    <p>{{ response }}</p>
+    <p id="typingText" data-response="{{ response | escapejs }}"></p>
   </div>
   {% endif %}
 
@@ -34,6 +37,29 @@
   </div>
 </div>
 
-<!-- Script eksternal -->
-<script src="{{ url_for('static', filename='typing.js') }}"></script>
+<script>
+// Saat submit form, tampilkan loading
+document.getElementById("chatForm").addEventListener("submit", function() {
+  document.getElementById("loading").classList.remove("hidden");
+});
+
+// Efek mengetik untuk jawaban
+let typingElement = document.getElementById("typingText");
+if (typingElement) {
+  let text = typingElement.dataset.response || "";
+  let index = 0;
+
+  function typeEffect() {
+    if (index < text.length) {
+      typingElement.innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeEffect, 30); // kecepatan ketik
+    }
+  }
+
+  if (text.trim() !== "") {
+    typeEffect();
+  }
+}
+</script>
 {% endblock %}
