@@ -24,10 +24,10 @@
   <!-- Loading -->
   <div id="loading" class="mt-6 hidden text-yellow-600 italic">💭 Sedang berpikir...</div>
 
-  {% if response %}
+  {% if response is not none %}
   <div class="mt-6 p-4 bg-gray-100 border border-black rounded-xl text-black">
     <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
-    <p id="typingText" data-response="{{ response | tojson | safe }}"></p>
+    <p id="typingText" data-response="{{ response | default('Tidak ada jawaban dari AI') | tojson | safe }}"></p>
   </div>
   {% endif %}
 
@@ -47,7 +47,7 @@ document.getElementById("chatForm").addEventListener("submit", function() {
 // Efek mengetik untuk jawaban
 let typingElement = document.getElementById("typingText");
 if (typingElement) {
-  let text = typingElement.dataset.response || "";
+  let text = typingElement.dataset.response || "Tidak ada jawaban dari AI";
   let index = 0;
   typingElement.innerHTML = ""; // kosongkan sebelum mulai ketik
 
