@@ -21,13 +21,11 @@
     </button>
   </form>
 
-  <!-- Loading -->
-  <div id="loading" class="mt-6 hidden text-yellow-300 italic">💭 Sedang berpikir...</div>
-
   {% if response %}
   <div class="mt-6 p-4 bg-gray-100 border border-black rounded-xl text-black">
-    <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
-    <p id="typingText" data-response={{ response | tojson }}></p>
+    <h3 class="font-bold mb-2">📘 Jawaban Berdasarkan Hukum Resmi:</h3>
+    <p>{{ response }}</p>
+    <p class="text-sm mt-4 text-gray-600 italic">🔍 Sumber jawaban merujuk pada UU dan pasal resmi hukum Indonesia.</p>
   </div>
   {% endif %}
 
