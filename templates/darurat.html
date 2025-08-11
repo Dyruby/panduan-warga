@@ -20,10 +20,13 @@
     </button>
   </form>
 
+  <!-- Loading -->
+  <div id="loading" class="mt-6 hidden text-red-300 italic">💭 Sedang berpikir...</div>
+
   {% if response %}
   <div class="mt-6 p-4 bg-red-800/30 border border-red-500 rounded-xl text-red-100">
     <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
-    <p>{{ response }}</p>
+    <p id="typingText" data-response={{ response | tojson }}></p>
   </div>
   {% endif %}
 
@@ -33,4 +36,30 @@
     </a>
   </div>
 </div>
+
+<script>
+// Saat submit form, tampilkan loading
+document.getElementById("chatForm").addEventListener("submit", function() {
+  document.getElementById("loading").classList.remove("hidden");
+});
+
+// Efek mengetik untuk jawaban
+let typingElement = document.getElementById("typingText");
+if (typingElement) {
+  let text = typingElement.dataset.response || "";
+  let index = 0;
+
+  function typeEffect() {
+    if (index < text.length) {
+      typingElement.innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeEffect, 30); // kecepatan ketik
+    }
+  }
+
+  if (text.trim() !== "") {
+    typeEffect();
+  }
+}
+</script>
 {% endblock %}
