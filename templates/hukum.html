@@ -2,37 +2,70 @@
 {% block title %}Asisten Hukum Warga{% endblock %}
 
 {% block content %}
-<div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-300">
-  <h2 class="text-3xl font-bold text-black mb-6">⚖️ ChatBot Hukum Warga</h2>
-
-  <form method="post" class="space-y-4">
+<div class="glass p-8 rounded-2xl shadow-xl">
+  <h2 class="text-3xl font-bold text-yellow-400 mb-6">⚖️ ChatBot Hukum Warga</h2>
+  
+  <form id="chatForm" method="post" class="space-y-4">
     <input
       type="text"
       name="question"
       placeholder="Tanyakan seputar hukum, pasal, atau hak warga negara..."
-      class="w-full p-3 rounded-lg bg-white border border-black text-black placeholder-gray-500 focus:outline-none focus:ring focus:ring-gray-400"
+      class="w-full p-3 rounded-lg bg-yellow-900/30 border border-yellow-500 text-white placeholder-yellow-300 focus:outline-none focus:ring focus:ring-yellow-400"
       required
     />
     <button
       type="submit"
-      class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-full font-bold transition"
+      class="bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-2 rounded-full font-bold transition"
     >
       Kirim Pertanyaan
     </button>
   </form>
 
+  <!-- Loading -->
+  <div id="loading" class="mt-6 hidden text-yellow-300 italic">💭 Sedang berpikir...</div>
+
   {% if response %}
-  <div class="mt-6 p-4 bg-gray-100 border border-black rounded-xl text-black">
-    <h3 class="font-bold mb-2">📘 Jawaban Berdasarkan Hukum Resmi:</h3>
-    <p>{{ response }}</p>
-    <p class="text-sm mt-4 text-gray-600 italic">🔍 Sumber jawaban merujuk pada UU dan pasal resmi hukum Indonesia.</p>
+  <div class="mt-6 p-4 bg-yellow-800/30 border border-yellow-500 rounded-xl text-yellow-100">
+    <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
+    <p id="typingText" data-response="{{ response | tojson }}"></p>
+    <p class="text-sm mt-4 text-yellow-300 italic">
+      🔍 Sumber jawaban merujuk pada UU dan pasal resmi hukum Indonesia.
+    </p>
   </div>
   {% endif %}
 
   <div class="mt-10 text-center">
-    <a href="/" class="inline-block bg-black hover:bg-gray-800 text-white font-bold py-2 px-6 rounded-full transition">
+    <a href="/" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full transition">
       ⬅ Kembali ke Beranda
     </a>
   </div>
 </div>
+
+<script>
+// Saat submit form, tampilkan loading
+document.getElementById("chatForm").addEventListener("submit", function() {
+  document.getElementById("loading").classList.remove("hidden");
+});
+
+// Efek mengetik untuk jawaban
+let typingElement = document.getElementById("typingText");
+if (typingElement) {
+  let text = typingElement.dataset.response || "";
+  let index = 0;
+
+  function typeEffect() {
+    if (index < text.length) {
+      typingElement.innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeEffect, 30); // kecepatan ketik
+    } else {
+      document.getElementById("loading").classList.add("hidden");
+    }
+  }
+
+  if (text.trim() !== "") {
+    typeEffect();
+  }
+}
+</script>
 {% endblock %}
