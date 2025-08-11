@@ -26,7 +26,7 @@
   {% if response %}
   <div class="mt-6 p-4 bg-blue-800/30 border border-blue-500 rounded-xl text-blue-100">
     <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
-    <p id="typingText" data-response="{{ response | escapejs }}"></p>
+    <p id="typingText" data-response={{ response | tojson }}></p>
   </div>
   {% endif %}
 
