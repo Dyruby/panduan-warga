@@ -5,7 +5,7 @@
 <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-300">
   <h2 class="text-3xl font-bold text-black mb-6">⚖️ ChatBot Hukum Warga</h2>
 
-  <form method="post" class="space-y-4">
+  <form id="chatForm" method="post" class="space-y-4">
     <input
       type="text"
       name="question"
@@ -22,12 +22,12 @@
   </form>
 
   <!-- Loading -->
-  <div id="loading" class="mt-6 hidden text-yellow-300 italic">💭 Sedang berpikir...</div>
+  <div id="loading" class="mt-6 hidden text-yellow-600 italic">💭 Sedang berpikir...</div>
 
   {% if response %}
   <div class="mt-6 p-4 bg-gray-100 border border-black rounded-xl text-black">
     <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
-    <p id="typingText" data-response={{ response | tojson }}></p>
+    <p id="typingText" data-response="{{ response | tojson }}"></p>
   </div>
   {% endif %}
 
@@ -37,4 +37,30 @@
     </a>
   </div>
 </div>
+
+<script>
+// Saat submit form, tampilkan loading
+document.getElementById("chatForm").addEventListener("submit", function() {
+  document.getElementById("loading").classList.remove("hidden");
+});
+
+// Efek mengetik untuk jawaban
+let typingElement = document.getElementById("typingText");
+if (typingElement) {
+  let text = typingElement.dataset.response || "";
+  let index = 0;
+
+  function typeEffect() {
+    if (index < text.length) {
+      typingElement.innerHTML += text.charAt(index);
+      index++;
+      setTimeout(typeEffect, 30); // kecepatan ketik
+    }
+  }
+
+  if (text.trim() !== "") {
+    typeEffect();
+  }
+}
+</script>
 {% endblock %}
