@@ -27,7 +27,7 @@
   {% if response %}
   <div class="mt-6 p-4 bg-gray-100 border border-black rounded-xl text-black">
     <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
-    <p id="typingText" data-response="{{ response | tojson }}"></p>
+    <p id="typingText" data-response="{{ response | tojson | safe }}"></p>
   </div>
   {% endif %}
 
@@ -49,12 +49,16 @@ let typingElement = document.getElementById("typingText");
 if (typingElement) {
   let text = typingElement.dataset.response || "";
   let index = 0;
+  typingElement.innerHTML = ""; // kosongkan sebelum mulai ketik
 
   function typeEffect() {
     if (index < text.length) {
       typingElement.innerHTML += text.charAt(index);
       index++;
       setTimeout(typeEffect, 30); // kecepatan ketik
+    } else {
+      // Sembunyikan loading setelah selesai
+      document.getElementById("loading").classList.add("hidden");
     }
   }
 
