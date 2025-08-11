@@ -25,14 +25,15 @@
   <div id="loading" class="mt-6 hidden text-yellow-300 italic">💭 Sedang berpikir...</div>
 
   {% if response %}
-  <div class="mt-6 p-4 bg-yellow-800/30 border border-yellow-500 rounded-xl text-yellow-100">
+<div class="mt-6 p-4 bg-yellow-800/30 border border-yellow-500 rounded-xl text-yellow-100">
     <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
     <p id="typingText" data-response="{{ response | tojson }}">{{ response }}</p>
     <p class="text-sm mt-4 text-yellow-300 italic">
-      🔍 Sumber jawaban merujuk pada UU dan pasal resmi hukum Indonesia.
+        🔍 Sumber jawaban merujuk pada UU dan pasal resmi hukum Indonesia.
     </p>
-  </div>
+</div>
 {% endif %}
+
 
 
   <div class="mt-10 text-center">
@@ -43,31 +44,25 @@
 </div>
 
 <script>
-// Saat submit form, tampilkan loading
-document.getElementById("chatForm").addEventListener("submit", function() {
-  document.getElementById("loading").classList.remove("hidden");
-});
+document.addEventListener("DOMContentLoaded", function () {
+    let typingElement = document.getElementById("typingText");
+    if (typingElement) {
+        let text = typingElement.dataset.response || "";
+        typingElement.innerHTML = ""; // kosongkan sebelum ketik
+        let index = 0;
 
-// Efek mengetik untuk jawaban
-let typingElement = document.getElementById("typingText");
-if (typingElement) {
-  let text = typingElement.dataset.response || "";
-  typingElement.innerHTML = ""; // kosongkan sebelum mulai
-  let index = 0;
+        function typeEffect() {
+            if (index < text.length) {
+                typingElement.innerHTML += text.charAt(index);
+                index++;
+                setTimeout(typeEffect, 25);
+            }
+        }
 
-  function typeEffect() {
-    if (index < text.length) {
-      typingElement.innerHTML += text.charAt(index);
-      index++;
-      setTimeout(typeEffect, 30); // kecepatan ketik
-    } else {
-      document.getElementById("loading").classList.add("hidden");
+        if (text.trim() !== "") {
+            typeEffect();
+        }
     }
-  }
-
-  if (text.trim() !== "") {
-    typeEffect();
-  }
-}
+});
 </script>
   {% endblock %} 
