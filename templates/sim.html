@@ -4,7 +4,7 @@
 <div class="glass p-8 rounded-2xl shadow-xl">
   <h2 class="text-3xl font-bold text-blue-400 mb-6">🛂 ChatBot Pembuatan SIM</h2>
   
-  <form id="chatForm" method="post" class="space-y-4">
+  <form method="post" class="space-y-4">
     <input
       type="text"
       name="question"
@@ -20,14 +20,12 @@
     </button>
   </form>
 
-  <!-- Loading -->
-  <div id="loading" class="mt-6 hidden text-blue-300 italic">💭 Sedang berpikir...</div>
-
-  <!-- Hasil jawaban -->
-  <div id="answerBox" class="mt-6 p-4 bg-blue-800/30 border border-blue-500 rounded-xl text-blue-100 {% if not response %}hidden{% endif %}">
+  {% if response %}
+  <div class="mt-6 p-4 bg-blue-800/30 border border-blue-500 rounded-xl text-blue-100">
     <h3 class="font-bold mb-2">💡 Jawaban AI:</h3>
-    <p id="typingText" data-response="{{ response | escapejs }}"></p>
+    <p>{{ response }}</p>
   </div>
+  {% endif %}
 
   <div class="mt-10 text-center">
     <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition">
