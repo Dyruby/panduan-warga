@@ -52,13 +52,6 @@ berita_data = [
 def home():
     return render_template("index.html", berita=berita_data)
 
-# 🔍 Fitur Pencarian
-@app.route("/search")
-def search():
-    query = request.args.get("q", "").lower()
-    hasil = [p for p in panduan_data if query in p["judul"].lower()]
-    return render_template("search.html", query=query, hasil=hasil)
-
 # Halaman Ujian Teori
 @app.route("/sim/ujian", methods=["GET", "POST"])
 def sim_ujian():
