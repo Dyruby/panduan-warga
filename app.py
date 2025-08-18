@@ -12,22 +12,22 @@ def search():
 
     # Mapping keyword → route navbar
     keyword_mapping = {
-        "sim": "/sim",
-        "buat sim": "/sim",
-        "perpanjang sim": "/sim",
+        "sim": "/panduan_sim",
+        "buat sim": "/panduan_sim",
+        "perpanjang sim": "/panduan_sim",
 
-        "petani": "/petani",
-        "pertanian": "/petani",
-        "padi": "/petani",
+        "petani": "/panduan_bertani_di_rawa",
+        "pertanian": "/panduan_bertani_di_rawa",
+        "padi": "/panduan_bertani_di_rawa",
 
-        "darurat": "/darurat",
-        "ambulans": "/darurat",
-        "polisi": "/darurat",
-        "pemadam": "/darurat",
+        "darurat": "/bantuan_layanan_darurat",
+        "ambulans": "/bantuan_layanan_darurat",
+        "polisi": "/bantuan_layanan_darurat",
+        "pemadam": "/bantuan_layanan_darurat",
 
-        "hukum": "/hukum",
-        "peraturan": "/hukum",
-        "uu": "/hukum",
+        "hukum": "/panduan_hukum",
+        "peraturan": "/panduan_hukum",
+        "uu": "/panduan_hukum",
     }
 
     # cek keyword ada di mapping → redirect langsung
