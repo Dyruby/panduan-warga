@@ -6,6 +6,35 @@ from ai_agent import tanya_ai_hukum  # Tambahkan import ini
 
 app = Flask(__name__)
 
+# 🔍 Data contoh (bisa diganti database)
+panduan_data = [
+    {"judul": "Cara Membuat SIM", "link": "/panduan_sim"},
+    {"judul": "Tips Bertani di Rawa", "link": "/panduan_bertani_di_rawa"},
+    {"judul": "Nomor Darurat Penting", "link": "/bantuan_layanan_darurat"},
+    {"judul": "Aturan Hukum Lalu Lintas", "link": "/panduan_hukum"},
+]
+
+berita_data = [
+    {"judul": "Perpanjangan SIM Online Resmi Dibuka", 
+     "isi": "Sekarang warga bisa memperpanjang SIM secara online tanpa harus antri panjang di kantor...",
+     "tanggal": "18 Agustus 2025"},
+    {"judul": "Layanan Darurat 24 Jam Diperkuat", 
+     "isi": "Pemerintah menambah petugas darurat untuk respon lebih cepat di daerah terpencil.",
+     "tanggal": "15 Agustus 2025"}
+]
+
+# 🏠 Beranda
+@app.route("/")
+def home():
+    return render_template("index.html", berita=berita_data)
+
+# 🔍 Fitur Pencarian
+@app.route("/search")
+def search():
+    query = request.args.get("q", "").lower()
+    hasil = [p for p in panduan_data if query in p["judul"].lower()]
+    return render_template("search.html", query=query, hasil=hasil)
+
 # Halaman Ujian Teori
 @app.route("/sim/ujian", methods=["GET", "POST"])
 def sim_ujian():
