@@ -12,6 +12,23 @@
   </form>
 </section>
 
+<h2 class="text-xl font-bold mb-4">📰 Berita Terkini</h2>
+
+{% for b in berita %}
+  <div class="glass p-4 mb-4 rounded-lg">
+    <h3 class="text-lg font-semibold">
+      <a href="{{ b.link }}" target="_blank" class="text-blue-400 hover:underline">
+        {{ b.judul }}
+      </a>
+    </h3>
+    <small class="text-gray-400">
+      {{ b.tanggal }} | {{ b.sumber }}
+    </small>
+    <p class="text-gray-300 mt-2">{{ b.konten|safe }}</p>
+  </div>
+{% endfor %}
+
+
 <div class="grid md:grid-cols-3 gap-6">
   <div class="glass p-6 rounded-xl hover:shadow-xl transition-all">
     <h2 class="text-xl font-semibold text-cyan-300 mb-2">📄 Pembuatan SIM</h2>

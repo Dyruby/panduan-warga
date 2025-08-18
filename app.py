@@ -39,20 +39,31 @@ def search():
     # fallback kalau tidak cocok → tampilkan search.html
     return render_template("search.html", query=query, hasil=[])
 
-# 🏠 Beranda
+# daftar RSS feed yang mau ditarik
+RSS_FEEDS = {
+    "Google News": "https://news.google.com/rss?hl=id&gl=ID&ceid=ID:id",
+    "Kompas": "https://www.kompas.com/rss/all",
+    "Detik": "https://rss.detik.com/index.php/detikcom"
+}
+
 @app.route("/")
 def home():
-    feed = feedparser.parse("https://news.google.com/rss?hl=id&gl=ID&ceid=ID:id")
-    
     berita = []
-    for entry in feed.entries[:5]:
-        berita.append({
-            "judul": entry.title,
-            "link": entry.link,
-            "tanggal": entry.published,
-            "konten": entry.summary
-        })
+
+    for sumber, url in RSS_FEEDS.items():
+        feed = feedparser.parse(url)
+        for entry in feed.entries[:5]:  # ambil 5 berita per portal
+            berita.append({
+                "judul": entry.title,
+                "link": entry.link,
+                "tanggal": entry.published if "published" in entry else "",
+                "konten": entry.summary if "summary" in entry else "",
+                "sumber": sumber
+            })
     
+    # urutkan berita dari yang terbaru (kalau ada published)
+    berita = sorted(berita, key=lambda x: x["tanggal"], reverse=True)
+
     return render_template("index.html", berita=berita)
 
 # Halaman Ujian Teori
