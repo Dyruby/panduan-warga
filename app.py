@@ -6,23 +6,36 @@ from ai_agent import tanya_ai_hukum  # Tambahkan import ini
 
 app = Flask(__name__)
 
-panduan_data = [
-    {
-        "judul": "Cara Membuat SIM",
-        "link": "/panduan_sim",
-        "konten": "Langkah-langkah membuat SIM: siapkan KTP, daftar di Satpas terdekat, ikuti tes teori dan praktik."
-    },
-    {
-        "judul": "Tips Bertani di Rawa",
-        "link": "/panduan_bertani_di_rawa",
-        "konten": "Petani di rawa sebaiknya memilih bibit padi unggul yang tahan genangan air..."
-    },
-    {
-        "judul": "Nomor Darurat Penting",
-        "link": "/bantuan_layanan_darurat",
-        "konten": "Polisi 110, Ambulans 118/119, Pemadam Kebakaran 113."
-    }
-]
+keyword_mapping = {
+    "sim": "/sim",
+    "buat sim": "/sim",
+    "perpanjang sim": "/sim",
+
+    "petani": "/petani",
+    "bertani": "/petani",
+    "padi": "/petani",
+
+    "darurat": "/darurat",
+    "ambulans": "/darurat",
+    "polisi": "/darurat",
+    "pemadam": "/darurat",
+
+    "hukum": "/hukum",
+    "peraturan": "/hukum",
+    "uu": "/hukum"
+}
+
+@app.route("/search")
+def search():
+    query = request.args.get("q", "").lower()
+    
+    # cek apakah keyword ada di mapping
+    for key, route in keyword_mapping.items():
+        if key in query:
+            return redirect(route)
+    
+    # kalau tidak cocok, tetap tampilkan halaman search
+    return render_template("search.html", query=query, hasil=[])
 
 
 berita_data = [
