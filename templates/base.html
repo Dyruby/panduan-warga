@@ -63,7 +63,57 @@
 
   <!-- Main Content -->
   <main class="flex-grow container mx-auto pt-32 px-6">
-    {% block content %}{% endblock %}
+    {% block content %}
+    
+    <!-- 🔍 Fitur Pencarian -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-2">🔍 Cari Informasi</h2>
+      <form action="/search" method="get" class="flex gap-2">
+        <input type="text" name="q" placeholder="Cari panduan..." 
+               class="w-full p-2 rounded-lg text-black">
+        <button type="submit" class="bg-cyan-500 px-4 py-2 rounded-lg hover:bg-cyan-600">Cari</button>
+      </form>
+    </section>
+
+    <!-- 📰 Berita Terbaru -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-2">📰 Berita Terbaru</h2>
+      <div class="glass p-4 rounded-lg mb-3">
+        <h3 class="font-semibold">Perpanjangan SIM Online Resmi Dibuka</h3>
+        <p class="text-sm text-gray-300">Sekarang warga bisa memperpanjang SIM secara online tanpa harus antri panjang di kantor...</p>
+      </div>
+      <div class="glass p-4 rounded-lg">
+        <h3 class="font-semibold">Program Penyuluhan Petani di Rawa</h3>
+        <p class="text-sm text-gray-300">Penyuluhan khusus petani rawa akan dilaksanakan minggu depan di Balai Desa...</p>
+      </div>
+    </section>
+
+    <!-- ❓ FAQ -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-2">❓ Tanya Jawab</h2>
+      <div class="glass p-3 rounded-lg">
+        <p class="font-semibold">Bagaimana cara membuat SIM?</p>
+        <p class="text-sm text-gray-300">Anda bisa mengunjungi menu SIM atau klik <a href="/panduan_sim" class="text-cyan-400">di sini</a>.</p>
+      </div>
+    </section>
+
+    <!-- 📅 Agenda -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-2">📅 Agenda</h2>
+      <ul class="list-disc ml-6 text-sm text-gray-300">
+        <li>20 Agustus 2025 - SIM Keliling di Alun-Alun Kota</li>
+        <li>25 Agustus 2025 - Pelatihan Petani Modern</li>
+        <li>1 September 2025 - Sosialisasi Hukum Lalu Lintas</li>
+      </ul>
+    </section>
+
+    <!-- 📞 Kontak -->
+    <section class="mb-8">
+      <h2 class="text-xl font-bold mb-2">📞 Kontak & Bantuan</h2>
+      <p class="text-sm">Jika butuh bantuan cepat, hubungi <span class="text-cyan-400">112</span> atau email ke <span class="text-cyan-400">bantuan@panduanwarga.id</span></p>
+    </section>
+
+    {% endblock %}
   </main>
 
   <!-- Footer -->
