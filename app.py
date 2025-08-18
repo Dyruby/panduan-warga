@@ -117,16 +117,5 @@ def hukum():
         response = tanya_ai_hukum(question)
     return render_template("hukum.html", response=response)
 
-@app.route("/search")
-def search():
-    query = request.args.get("q", "").lower()
-    hasil = [p for p in panduan_data if query in p["judul"].lower()]
-    
-    if len(hasil) == 1:
-        return render_template("detail.html", panduan=hasil[0])  # langsung buka detail
-    
-    return render_template("search.html", query=query, hasil=hasil)
-
-
 if __name__ == '__main__':
     app.run(debug=True)
