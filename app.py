@@ -42,13 +42,8 @@ def search():
 # 🏠 Beranda
 @app.route("/")
 def home():
-    return render_template("index.html", berita=berita_data)
-
-def beranda():
-    # Ambil RSS feed dari Google News (Indonesia)
     feed = feedparser.parse("https://news.google.com/rss?hl=id&gl=ID&ceid=ID:id")
     
-    # Ambil 5 berita terbaru
     berita = []
     for entry in feed.entries[:5]:
         berita.append({
@@ -58,7 +53,7 @@ def beranda():
             "konten": entry.summary
         })
     
-    return render_template("beranda.html", berita=berita)
+    return render_template("index.html", berita=berita)
 
 # Halaman Ujian Teori
 @app.route("/sim/ujian", methods=["GET", "POST"])
