@@ -6,13 +6,24 @@ from ai_agent import tanya_ai_hukum  # Tambahkan import ini
 
 app = Flask(__name__)
 
-# 🔍 Data contoh (bisa diganti database)
 panduan_data = [
-    {"judul": "Cara Membuat SIM", "link": "/panduan_sim"},
-    {"judul": "Tips Bertani di Rawa", "link": "/panduan_bertani_di_rawa"},
-    {"judul": "Nomor Darurat Penting", "link": "/bantuan_layanan_darurat"},
-    {"judul": "Aturan Hukum Lalu Lintas", "link": "/panduan_hukum"},
+    {
+        "judul": "Cara Membuat SIM",
+        "link": "/panduan_sim",
+        "konten": "Langkah-langkah membuat SIM: siapkan KTP, daftar di Satpas terdekat, ikuti tes teori dan praktik."
+    },
+    {
+        "judul": "Tips Bertani di Rawa",
+        "link": "/panduan_bertani_di_rawa",
+        "konten": "Petani di rawa sebaiknya memilih bibit padi unggul yang tahan genangan air..."
+    },
+    {
+        "judul": "Nomor Darurat Penting",
+        "link": "/bantuan_layanan_darurat",
+        "konten": "Polisi 110, Ambulans 118/119, Pemadam Kebakaran 113."
+    }
 ]
+
 
 berita_data = [
     {"judul": "Perpanjangan SIM Online Resmi Dibuka", 
@@ -105,6 +116,17 @@ def hukum():
         question = request.form['question']
         response = tanya_ai_hukum(question)
     return render_template("hukum.html", response=response)
+
+@app.route("/search")
+def search():
+    query = request.args.get("q", "").lower()
+    hasil = [p for p in panduan_data if query in p["judul"].lower()]
+    
+    if len(hasil) == 1:
+        return render_template("detail.html", panduan=hasil[0])  # langsung buka detail
+    
+    return render_template("search.html", query=query, hasil=hasil)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

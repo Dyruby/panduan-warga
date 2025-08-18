@@ -9,9 +9,9 @@
   <ul class="space-y-3">
     {% for item in hasil %}
       <li class="glass p-4 rounded-lg">
-        <a href="{{ item.link }}" class="text-cyan-400 font-semibold hover:underline">
-          {{ item.judul }}
-        </a>
+        <h3 class="text-cyan-400 font-semibold">{{ item.judul }}</h3>
+        <p class="text-sm text-gray-300 mb-2">{{ item.konten }}</p>
+        <a href="{{ item.link }}" class="text-blue-400 hover:underline">Buka Detail</a>
       </li>
     {% endfor %}
   </ul>
