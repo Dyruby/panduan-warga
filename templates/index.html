@@ -13,15 +13,15 @@
 </section>
 
 <section class="mt-10">
-  <h2 class="text-xl font-bold mb-3">📰 Berita Terbaru</h2>
+  <h2 class="text-xl font-bold mb-3">📰 Berita Terkini</h2>
   {% for b in berita %}
   <div class="glass p-4 rounded-lg mb-3">
-    <h3 class="font-semibold">{{ b.judul }}</h3>
-    <p class="text-xs text-gray-400">{{ b.tanggal }}</p>
-    <p class="text-sm text-gray-300">{{ b.isi }}</p>
+    <h3 class="font-semibold">
+      <a href="{{ b.link }}" class="text-blue-400 hover:underline" target="_blank">{{ b.judul }}</a>
+    </h3>
+    <p class="text-sm text-gray-400">{{ b.tanggal }}</p>
+    <p class="text-sm text-gray-300">{{ b.konten|safe }}</p>
   </div>
-  {% else %}
-  <p class="text-gray-400">Belum ada berita terbaru.</p>
   {% endfor %}
 </section>
 

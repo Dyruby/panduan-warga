@@ -3,6 +3,7 @@ from ai_agent import tanya_ai_pertanian  # Tambahkan import ini
 from ai_agent import tanya_ai_sim  # Tambahkan import ini
 from ai_agent import tanya_ai_layanan_darurat  # Tambahkan import ini
 from ai_agent import tanya_ai_hukum  # Tambahkan import ini
+import feedparser
 
 app = Flask(__name__)
 
@@ -38,20 +39,26 @@ def search():
     # fallback kalau tidak cocok → tampilkan search.html
     return render_template("search.html", query=query, hasil=[])
 
-
-berita_data = [
-    {"judul": "Perpanjangan SIM Online Resmi Dibuka", 
-     "isi": "Sekarang warga bisa memperpanjang SIM secara online tanpa harus antri panjang di kantor...",
-     "tanggal": "18 Agustus 2025"},
-    {"judul": "Layanan Darurat 24 Jam Diperkuat", 
-     "isi": "Pemerintah menambah petugas darurat untuk respon lebih cepat di daerah terpencil.",
-     "tanggal": "15 Agustus 2025"}
-]
-
 # 🏠 Beranda
 @app.route("/")
 def home():
     return render_template("index.html", berita=berita_data)
+
+def beranda():
+    # Ambil RSS feed dari Google News (Indonesia)
+    feed = feedparser.parse("https://news.google.com/rss?hl=id&gl=ID&ceid=ID:id")
+    
+    # Ambil 5 berita terbaru
+    berita = []
+    for entry in feed.entries[:5]:
+        berita.append({
+            "judul": entry.title,
+            "link": entry.link,
+            "tanggal": entry.published,
+            "konten": entry.summary
+        })
+    
+    return render_template("beranda.html", berita=berita)
 
 # Halaman Ujian Teori
 @app.route("/sim/ujian", methods=["GET", "POST"])
