@@ -10,7 +10,7 @@ app = Flask(__name__)
 def search():
     query = request.args.get("q", "").lower()
 
-    # Mapping keyword ke halaman navbar
+    # Mapping keyword → route navbar
     keyword_mapping = {
         "sim": "/sim",
         "buat sim": "/sim",
@@ -27,15 +27,15 @@ def search():
 
         "hukum": "/hukum",
         "peraturan": "/hukum",
-        "uu": "/hukum"
+        "uu": "/hukum",
     }
 
-    # cek apakah keyword ada di mapping
+    # cek keyword ada di mapping → redirect langsung
     for key, route in keyword_mapping.items():
         if key in query:
-            return redirect(route)  # langsung ke navbar
+            return redirect(route)
 
-    # fallback → kalau keyword tidak ditemukan
+    # fallback kalau tidak cocok → tampilkan search.html
     return render_template("search.html", query=query, hasil=[])
 
 
