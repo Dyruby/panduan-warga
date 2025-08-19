@@ -11,12 +11,12 @@
       color: #fff;
       font-family: 'Segoe UI', sans-serif;
     }
-     .glass {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
     a:hover {
       text-shadow: 0 0 10px cyan;
     }
@@ -26,26 +26,63 @@
              bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-800
              bg-fixed bg-cover bg-no-repeat">
 
-  <header class="glass p-4 shadow-lg fixed w-full z-10">
+  <!-- 🔹 Navbar -->
+  <header class="glass p-4 shadow-lg fixed w-full z-20">
     <div class="container mx-auto flex justify-between items-center">
-      <h1 class="text-2xl font-bold text-cyan-400 tracking-wide">🧠 Panduan Warga</h1>
-      <nav class="space-x-4 text-white">
+      
+      <!-- Logo + Judul -->
+      <a href="/" class="flex items-center gap-2">
+        <span class="text-2xl">🧠</span>
+        <h1 class="text-xl md:text-2xl font-bold text-cyan-400 tracking-wide">
+          Panduan Warga
+        </h1>
+      </a>
+
+      <!-- Menu Desktop -->
+      <nav class="hidden md:flex space-x-6 text-white font-medium">
         <a href="/" class="hover:text-cyan-300 transition">Beranda</a>
         <a href="/panduan_sim" class="hover:text-blue-300 transition">SIM</a>
         <a href="/panduan_bertani_di_rawa" class="hover:text-green-300 transition">Petani</a>
         <a href="/bantuan_layanan_darurat" class="hover:text-red-300 transition">Darurat</a>
-        <a href="/panduan_hukum" class="hover:text-red-300 transition">Hukum</a>
+        <a href="/panduan_hukum" class="hover:text-yellow-300 transition">Hukum</a>
+      </nav>
+
+      <!-- Hamburger Menu (Mobile) -->
+      <button id="menu-btn" class="md:hidden text-cyan-400 text-2xl focus:outline-none">
+        ☰
+      </button>
+    </div>
+
+    <!-- Dropdown Mobile -->
+    <div id="menu" class="hidden md:hidden mt-3 px-4">
+      <nav class="flex flex-col gap-2 glass rounded-lg p-4">
+        <a href="/" class="hover:text-cyan-300 transition">Beranda</a>
+        <a href="/panduan_sim" class="hover:text-blue-300 transition">SIM</a>
+        <a href="/panduan_bertani_di_rawa" class="hover:text-green-300 transition">Petani</a>
+        <a href="/bantuan_layanan_darurat" class="hover:text-red-300 transition">Darurat</a>
+        <a href="/panduan_hukum" class="hover:text-yellow-300 transition">Hukum</a>
       </nav>
     </div>
   </header>
 
-  <main class="flex-grow container mx-auto pt-24 px-6">
+  <!-- 🔹 Main Content -->
+  <main class="flex-grow container mx-auto pt-28 px-6">
     {% block content %}{% endblock %}
   </main>
 
+  <!-- 🔹 Footer -->
   <footer class="glass text-center p-4 text-sm mt-10 border-t border-cyan-500">
     &copy; 2025 Panduan Warga | Dibuat dengan Flask + Tailwind
   </footer>
+
+  <!-- Script Toggle Mobile Menu -->
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
 
 </body>
 </html>
