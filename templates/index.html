@@ -1,18 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Beranda - Panduan Warga{% endblock %}
 {% block content %}
-
-
-<!-- 🔍 Fitur tambahan -->
-<section class="mt-10">
-  <h2 class="text-xl font-bold mb-3">🔍 Cari Informasi</h2>
-  <form action="/search" method="get" class="flex gap-2">
-    <input type="text" name="q" placeholder="Cari panduan..."
-           class="w-full p-2 rounded-lg text-black">
-    <button type="submit" class="bg-cyan-500 px-4 py-2 rounded-lg hover:bg-cyan-600">Cari</button>
-  </form>
-</section><br><br>
-
 <h2 class="text-2xl font-bold mb-6">📰 Berita Terkini</h2>
 
 <div class="grid md:grid-cols-2 gap-6">
