@@ -22,40 +22,32 @@
     }
   </style>
 </head>
-<body class="min-h-screen text-white 
-             bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-800
-             bg-fixed bg-cover bg-no-repeat">
+<body class="min-h-screen text-white bg-gradient-to-br from-gray-900 via-indigo-900 to-gray-800 bg-fixed bg-cover bg-no-repeat">
 
   <!-- 🔹 Navbar -->
   <header class="glass p-4 shadow-lg fixed w-full z-20">
-    <div class="container mx-auto flex justify-between items-center">
-      
-      <!-- Logo + Judul -->
-      <a href="/" class="flex items-center gap-2">
-        <span class="text-2xl">🧠</span>
-        <h1 class="text-xl md:text-2xl font-bold text-cyan-400 tracking-wide">
-          Panduan Warga
-        </h1>
-      </a>
+    <div class="container mx-auto flex justify-between items-center relative">
 
-      <!-- Menu Desktop -->
+      <!-- Logo + Dropdown Trigger -->
+      <div class="relative">
+        <button id="logo-btn" class="flex items-center gap-2 focus:outline-none">
+          <span class="text-2xl">🧠</span>
+          <h1 class="text-xl md:text-2xl font-bold text-cyan-400 tracking-wide">
+            Panduan Warga
+          </h1>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div id="logo-menu" class="hidden absolute mt-3 left-0 glass rounded-lg p-4 space-y-2 w-40">
+          <a href="/panduan_sim" class="block hover:text-blue-300">SIM</a>
+          <a href="/panduan_bertani_di_rawa" class="block hover:text-green-300">Petani</a>
+          <a href="/bantuan_layanan_darurat" class="block hover:text-red-300">Darurat</a>
+          <a href="/panduan_hukum" class="block hover:text-yellow-300">Hukum</a>
+        </div>
+      </div>
+
+      <!-- Menu Desktop Normal -->
       <nav class="hidden md:flex space-x-6 text-white font-medium">
-        <a href="/" class="hover:text-cyan-300 transition">Beranda</a>
-        <a href="/panduan_sim" class="hover:text-blue-300 transition">SIM</a>
-        <a href="/panduan_bertani_di_rawa" class="hover:text-green-300 transition">Petani</a>
-        <a href="/bantuan_layanan_darurat" class="hover:text-red-300 transition">Darurat</a>
-        <a href="/panduan_hukum" class="hover:text-yellow-300 transition">Hukum</a>
-      </nav>
-
-      <!-- Hamburger Menu (Mobile) -->
-      <button id="menu-btn" class="md:hidden text-cyan-400 text-2xl focus:outline-none">
-        ☰
-      </button>
-    </div>
-
-    <!-- Dropdown Mobile -->
-    <div id="menu" class="hidden md:hidden mt-3 px-4">
-      <nav class="flex flex-col gap-2 glass rounded-lg p-4">
         <a href="/" class="hover:text-cyan-300 transition">Beranda</a>
         <a href="/panduan_sim" class="hover:text-blue-300 transition">SIM</a>
         <a href="/panduan_bertani_di_rawa" class="hover:text-green-300 transition">Petani</a>
@@ -75,12 +67,20 @@
     &copy; 2025 Panduan Warga | Dibuat dengan Flask + Tailwind
   </footer>
 
-  <!-- Script Toggle Mobile Menu -->
+  <!-- Script Toggle Dropdown -->
   <script>
-    const btn = document.getElementById('menu-btn');
-    const menu = document.getElementById('menu');
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
+    const logoBtn = document.getElementById('logo-btn');
+    const logoMenu = document.getElementById('logo-menu');
+    
+    logoBtn.addEventListener('click', () => {
+      logoMenu.classList.toggle('hidden');
+    });
+
+    // Klik di luar dropdown → close
+    document.addEventListener('click', (e) => {
+      if (!logoBtn.contains(e.target) && !logoMenu.contains(e.target)) {
+        logoMenu.classList.add('hidden');
+      }
     });
   </script>
 
