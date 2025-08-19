@@ -105,6 +105,10 @@ def bantuan_layanan_darurat():
 def panduan_hukum():
     return render_template("panduan_hukum.html")
 
+@app.route('/ai_online')
+def ai_online():
+    return render_template("ai_online.html")
+
 @app.route('/sim', methods=['GET', 'POST'])
 def sim():
     response = ""
