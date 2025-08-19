@@ -46,14 +46,22 @@
         </div>
       </div>
 
-      <!-- Menu Desktop Normal -->
-      <nav class="hidden md:flex space-x-6 text-white font-medium">
-        <a href="/" class="hover:text-cyan-300 transition">Beranda</a>
-        <a href="/panduan_sim" class="hover:text-blue-300 transition">SIM</a>
-        <a href="/panduan_bertani_di_rawa" class="hover:text-green-300 transition">Petani</a>
-        <a href="/bantuan_layanan_darurat" class="hover:text-red-300 transition">Darurat</a>
-        <a href="/panduan_hukum" class="hover:text-yellow-300 transition">Hukum</a>
-      </nav>
+      <!-- Menu Navigasi -->
+    <nav class="hidden md:flex space-x-8 font-semibold">
+      <a href="/" class="hover:text-cyan-300 transition">🏠 Beranda</a>
+      <a href="/masukan" class="hover:text-green-300 transition">📢 Masukan & Kritikan</a>
+      <a href="/laporan" class="hover:text-yellow-300 transition">📝 Laporan Warga</a>
+      <a href="/tentang" class="hover:text-purple-300 transition">ℹ️ Tentang</a>
+    </nav>
+
+    <!-- Search Bar -->
+    <div class="hidden md:block">
+      <form action="/search" method="get" class="flex items-center bg-gray-800 rounded-lg px-2">
+        <input type="text" name="q" placeholder="Cari..."
+               class="bg-transparent p-2 text-sm focus:outline-none text-white">
+        <button type="submit" class="text-cyan-400 hover:text-cyan-300">🔍</button>
+      </form>
+    </div>
     </div>
   </header>
 
