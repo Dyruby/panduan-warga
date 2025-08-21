@@ -182,6 +182,10 @@ def panduan_hukum():
 def ai_online():
     return render_template("ai_online.html")
 
+@app.route("/tentang")
+def tentang():
+    return render_template("tentang.html")
+
 @app.route('/sim', methods=['GET', 'POST'])
 def sim():
     response = ""
