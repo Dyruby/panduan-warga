@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}tentang website{% endblock %}
+
+{% block content %}
+<div class="glass p-8 rounded-xl shadow-xl">
+  <h2 class="text-3xl font-bold text-green-400 mb-6">panduan warga</h2>
+
+  <!-- Penjelasan Umum -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">apa itu panduan warga?</h3>
+    <p class="text-gray-200">panduan warga adalah website yang dapat membantu masyrakat dalam hal pengetahuan seperti pembuatan sim, bertani, layanan darurat, hukum, dll. 
+        berfungsi untuk membantu masyarakat yang ingin mendapatkan pengetahuan yang mungkin akan di perlukan.</p>
+  </section>
+
+  <!-- fitur-fitur yang disediakan -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">apa saja fitur-fitur yang disediakan didalam website ini?</h3>
+        <h3 class="text-2xl font-semibold text-white mb-2">fitur-fitur yang disediakan lumayan banyak dan juga masih di kembangkan agar lebih nyaman di gunakan untuk pengguna. 
+            serta website ini tanpa perlu login jadi warga bisa meakses tanpa perlu memasukan data diri.</h3>
+    <ul class="list-disc pl-6 text-gray-200">
+      <li><strong>dropdown bar:</strong> SIM, Petani, Darurat, Hukum, AI Online/li>
+      <li><strong>navbar:</strong> beranda, masukan dan kritik, lihat, dan tentang</li>
+    </ul>
+  </section>
+
+  <!-- penjelasan masing-masing sistem -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">berikut penjelasan masing-masing fitur yang disediakan</h3>
+    <ul class="list-disc pl-6 text-gray-200">
+      <li><strong>SIM:</strong> berisi semua hal yang ingin diketahui mengenai sim seperti cara pembuatan, syarat, biaya, bahkan ada simulasi ujian nya juga.</li>
+      <li><strong>Petani:</strong> berisi semua hal yang ingin diketahui mengenai bertani terutama di daerah rawa-rawa.</li>
+      <li><strong>Darurat:</strong> berisi semua hal yang ingin diketahui mengenai pertolongan pertama serta no darurat, alamat seperti rumah sakit, kantor polisi, damkar, dll yang dapat membantu di saat genting.</li>
+      <li><strong>Hukum:</strong> berisi semua hal yang ingin diketahui mengenai hukum yang mungkin dapat sedikit untuk mengatasi masalah hukum umum seperti masalah hak tanah, hak waris, dll.</li>
+      <li><strong>AI Online:</strong> selain informasi yang tersedia ada juga AI yang dapat memberikan jawaban sesuai pilihan yang ada.</li>
+    </ul>
+  </section>
+
+  <!-- fitur tersembunyi -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">tekan panduan warga dan anda akan terkejut</h3>
+  </section>
+
+  <!-- pembuat dan alasan -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-white mb-2">BachLut adalah pencipta website ini</h3>
+    <ul class="list-disc pl-6 text-gray-200">
+      <li>alasannya untuk membantu warga dalam hal pengetahuan umum</li>
+    </ul>
+  </section>
+
+  <!-- Tombol Kembali -->
+  <div class="mt-10 text-center">
+    <a href="/" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Kembali ke Beranda
+    </a>
+  </div>
+</div>
+{% endblock %}
