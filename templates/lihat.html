@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}Lihat Masukan{% endblock %}
+
+{% block content %}
+<div class="glass p-8 rounded-xl shadow-xl bg-gray-800">
+  <h2 class="text-3xl font-bold text-green-400 mb-6">📋 Daftar Masukan</h2>
+
+  {% if data %}
+    <table class="w-full border border-gray-600 rounded-lg overflow-hidden">
+      <thead class="bg-gray-700 text-cyan-300">
+        <tr>
+          <th class="p-2 text-left">ID</th>
+          <th class="p-2 text-left">Nama</th>
+          <th class="p-2 text-left">Isi</th>
+          <th class="p-2 text-left">Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for d in data %}
+        <tr class="border-b border-gray-600 hover:bg-gray-700">
+          <td class="p-2">{{ d[0] }}</td>
+          <td class="p-2">{{ d[1] }}</td>
+          <td class="p-2">{{ d[2] }}</td>
+          <td class="p-2 space-x-2">
+            <a href="/edit/{{ d[0] }}" class="bg-yellow-500 hover:bg-yellow-600 text-black px-3 py-1 rounded">✏️ Edit</a>
+            <a href="/hapus/{{ d[0] }}" class="bg-red-600 hover:bg-red-700 px-3 py-1 rounded">🗑️ Hapus</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p class="text-gray-400">Belum ada masukan.</p>
+  {% endif %}
+</div>
+{% endblock %}

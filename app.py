@@ -4,8 +4,81 @@ from ai_agent import tanya_ai_sim  # Tambahkan import ini
 from ai_agent import tanya_ai_layanan_darurat  # Tambahkan import ini
 from ai_agent import tanya_ai_hukum  # Tambahkan import ini
 import feedparser
+import mysql.connector
 
 app = Flask(__name__)
+
+# Konfigurasi koneksi ke MySQL
+db_config = {
+    "host": "localhost",
+    "user": "root",        # ganti sesuai user MySQL
+    "password": "",        # ganti sesuai password MySQL
+    "database": "db_masukan"    
+}
+
+def get_db_connection():
+    return mysql.connector.connect(**db_config)
+
+@app.route("/masukan")
+def masukan():
+    return render_template("masukan.html")
+
+@app.route("/kirim", methods=["POST"])
+def kirim():
+    nama = request.form["nama"]
+    isi = request.form["isi"]
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("INSERT INTO masukan (nama, isi) VALUES (%s, %s)", (nama, isi))
+    conn.commit()
+    cursor.close()
+    conn.close()
+
+    return redirect(url_for("lihat"))
+
+@app.route("/lihat")
+def lihat():
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM masukan ORDER BY id DESC")
+    data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return render_template("lihat.html", data=data)
+
+# 🔹 Edit masukan
+@app.route("/edit/<int:id>", methods=["GET", "POST"])
+def edit(id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    if request.method == "POST":
+        nama = request.form["nama"]
+        isi = request.form["isi"]
+        cursor.execute("UPDATE masukan SET nama=%s, isi=%s WHERE id=%s", (nama, isi, id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return redirect(url_for("lihat"))
+
+    cursor.execute("SELECT * FROM masukan WHERE id=%s", (id,))
+    data = cursor.fetchone()
+    cursor.close()
+    conn.close()
+    return render_template("edit.html", data=data)
+
+# 🔹 Hapus masukan
+@app.route("/hapus/<int:id>")
+def hapus(id):
+    conn = get_db_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM masukan WHERE id=%s", (id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return redirect(url_for("lihat"))
 
 @app.route("/search")
 def search():

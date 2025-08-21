@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Edit Masukan{% endblock %}
+
+{% block content %}
+<div class="glass p-8 rounded-xl shadow-xl bg-gray-800">
+  <h2 class="text-3xl font-bold text-yellow-400 mb-6">✏️ Edit Masukan</h2>
+
+  <form action="/edit/{{ data[0] }}" method="post" class="space-y-4">
+    <div>
+      <label class="block mb-2">Nama</label>
+      <input type="text" name="nama" value="{{ data[1] }}" required class="w-full p-2 rounded bg-gray-700 text-white">
+    </div>
+
+    <div>
+      <label class="block mb-2">Isi Masukan</label>
+      <textarea name="isi" rows="4" required class="w-full p-2 rounded bg-gray-700 text-white">{{ data[2] }}</textarea>
+    </div>
+
+    <button type="submit" class="bg-yellow-500 hover:bg-yellow-600 text-black px-4 py-2 rounded-lg font-bold">
+      ✅ Simpan Perubahan
+    </button>
+    <a href="/lihat" class="ml-2 bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded-lg">⬅ Kembali</a>
+  </form>
+</div>
+{% endblock %}

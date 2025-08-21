@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Masukan & Kritikan{% endblock %}
+
+{% block content %}
+<div class="glass p-8 rounded-xl shadow-xl bg-gray-800">
+  <h2 class="text-3xl font-bold text-blue-400 mb-6">📢 Masukan & Kritikan</h2>
+
+  <form action="/kirim" method="post" class="space-y-4">
+    <div>
+      <label class="block mb-2">Nama</label>
+      <input type="text" name="nama" required class="w-full p-2 rounded bg-gray-700 text-white">
+    </div>
+
+    <div>
+      <label class="block mb-2">Isi Masukan</label>
+      <textarea name="isi" rows="4" required class="w-full p-2 rounded bg-gray-700 text-white"></textarea>
+    </div>
+
+    <button type="submit" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg font-bold">
+      💬 Kirim
+    </button>
+  </form>
+</div>
+{% endblock %}
