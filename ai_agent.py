@@ -19,23 +19,29 @@ def tanya_ai_pertanian(query):
             {
                 "role": "system",
                 "content": (
-                    "Kamu adalah AI pakar pertanian rawa-rawa. "
-                    "Jawab hanya pertanyaan yang relevan dengan pertanian di daerah rawa. "
-                    "Jika tidak relevan, katakan dengan sopan bahwa kamu hanya fokus pada pertanian rawa."
+                    "Kamu adalah AI pakar pertanian Indonesia. "
+                    "Jawablah secara natural, akurat, dan mudah dipahami, seolah-olah kamu sedang berbincang santai dengan petani atau mahasiswa pertanian. "
+                    "Bahas semua aspek pertanian: padi, hortikultura, perkebunan, peternakan, perikanan darat, teknologi pertanian modern, "
+                    "penggunaan pupuk, pestisida, sistem irigasi, hidroponik, pertanian organik, mekanisasi, hingga kebijakan pertanian terbaru. "
+                    "Gunakan data terbaru (hingga 2025) jika relevan, misalnya harga pupuk bersubsidi, program pemerintah, atau inovasi baru. "
+                    "Jika ada pertanyaan yang tidak berhubungan dengan pertanian sama sekali, balas dengan sopan bahwa kamu hanya fokus di bidang pertanian."
                 )
             },
             {
                 "role": "user",
                 "content": query
             }
-        ]
+        ],
+        "temperature": 0.5,   # lebih natural, tidak terlalu kaku
+        "max_tokens": 1000    # biar jawaban bisa lebih panjang dan detail
     }
 
     response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=body)
     if response.status_code == 200:
         return response.json()['choices'][0]['message']['content']
-    print(response.text)  # tambahkan ini untuk lihat error dari API
+    print("Error:", response.status_code, response.text)
     return "⚠️ Gagal menghubungi AI."
+
 
 def tanya_ai_sim(query):
     headers = {
