@@ -12,7 +12,7 @@
       font-family: 'Segoe UI', sans-serif;
     }
     .glass {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.6); /* lebih gelap */
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -39,27 +39,30 @@
 
         <!-- Dropdown Menu -->
         <div id="logo-menu" class="hidden absolute mt-3 left-0 glass rounded-lg p-4 w-44 shadow-lg">
-          <a href="#" data-menu="sim" class="block px-2 py-1 rounded hover:bg-gray-700">SIM</a>
-          <a href="#" data-menu="petani" class="block px-2 py-1 rounded hover:bg-gray-700">Petani</a>
-          <a href="#" data-menu="darurat" class="block px-2 py-1 rounded hover:bg-gray-700">Darurat</a>
-          <a href="#" data-menu="hukum" class="block px-2 py-1 rounded hover:bg-gray-700">Hukum</a>
-          <a href="#" data-menu="ai" class="block px-2 py-1 rounded hover:bg-gray-700">AI Online</a>
+          <a href="/panduan_sim" class="block px-2 py-1 rounded hover:bg-gray-700">SIM</a>
+          <a href="/panduan_bertani_di_rawa" class="block px-2 py-1 rounded hover:bg-gray-700">Petani</a>
+          <a href="/bantuan_layanan_darurat" class="block px-2 py-1 rounded hover:bg-gray-700">Darurat</a>
+          <a href="/panduan_hukum" class="block px-2 py-1 rounded hover:bg-gray-700">Hukum</a>
+          <a href="/ai_online" class="block px-2 py-1 rounded hover:bg-gray-700">AI Online</a>
         </div>
       </div>
 
-      <!-- 🔹 NAVBAR DINAMIS -->
-      <nav id="dynamic-navbar" class="hidden md:flex space-x-8 font-semibold">
-        <!-- Akan diisi lewat JavaScript -->
-      </nav>
+      <!-- Menu Navigasi -->
+    <nav class="hidden md:flex space-x-8 font-semibold">
+      <a href="/" class="hover:text-cyan-300 transition">🏠 Beranda</a>
+      <a href="/masukan" class="hover:text-green-300 transition">📢 Masukan & Kritikan</a>
+      <a href="/lihat" class="hover:text-yellow-300 transition">📋 Lihat Data</a>
+      <a href="/tentang" class="hover:text-purple-300 transition">ℹ️ Tentang</a>
+    </nav>
 
-      <!-- Search Bar -->
-      <div class="hidden md:block">
-        <form action="/search" method="get" class="flex items-center bg-gray-800 rounded-lg px-2">
-          <input type="text" name="q" placeholder="Cari..."
-                 class="bg-transparent p-2 text-sm focus:outline-none text-white">
-          <button type="submit" class="text-cyan-400 hover:text-cyan-300">🔍</button>
-        </form>
-      </div>
+    <!-- Search Bar -->
+    <div class="hidden md:block">
+      <form action="/search" method="get" class="flex items-center bg-gray-800 rounded-lg px-2">
+        <input type="text" name="q" placeholder="Cari..."
+               class="bg-transparent p-2 text-sm focus:outline-none text-white">
+        <button type="submit" class="text-cyan-400 hover:text-cyan-300">🔍</button>
+      </form>
+    </div>
     </div>
   </header>
 
@@ -73,65 +76,20 @@
     &copy; 2025 Panduan Warga | Dibuat dengan Flask + Tailwind
   </footer>
 
-  <!-- Script -->
+  <!-- Script Toggle Dropdown -->
   <script>
     const logoBtn = document.getElementById('logo-btn');
     const logoMenu = document.getElementById('logo-menu');
-    const dynamicNavbar = document.getElementById('dynamic-navbar');
-
-    // Menu per kategori
-    const navItems = {
-      sim: [
-        { name: "Pengertian SIM", link: "#pengertian-sim" },
-        { name: "Syarat Membuat SIM", link: "#syarat-sim" },
-        { name: "Langkah Membuat SIM", link: "#langkah-sim" },
-        { name: "Biaya SIM", link: "#biaya-sim" },
-        { name: "Tips Lulus Ujian", link: "#tips-sim" }
-      ],
-      petani: [
-        { name: "Panduan Bertani", link: "#panduan-petani" },
-        { name: "Teknologi Pertanian", link: "#teknologi-pertanian" },
-        { name: "Tips Bertani", link: "#tips-bertani" }
-      ],
-      darurat: [
-        { name: "Kontak Darurat", link: "#kontak-darurat" },
-        { name: "Langkah Pertolongan", link: "#langkah-pertolongan" }
-      ],
-      hukum: [
-        { name: "Hukum Dasar", link: "#hukum-dasar" },
-        { name: "Peraturan Lalu Lintas", link: "#peraturan-lalu-lintas" }
-      ],
-      ai: [
-        { name: "Panduan AI", link: "#panduan-ai" },
-      ]
-    };
-
-    // Toggle dropdown
+    
     logoBtn.addEventListener('click', () => {
       logoMenu.classList.toggle('hidden');
     });
 
+    // Klik di luar dropdown → close
     document.addEventListener('click', (e) => {
       if (!logoBtn.contains(e.target) && !logoMenu.contains(e.target)) {
         logoMenu.classList.add('hidden');
       }
-    });
-
-    // Update navbar dinamis
-    document.querySelectorAll('#logo-menu a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const menu = e.target.dataset.menu;
-        const items = navItems[menu] || [];
-
-        // Isi navbar
-        dynamicNavbar.innerHTML = items
-          .map(item => `<a href="${item.link}" class="hover:text-cyan-300 transition">${item.name}</a>`)
-          .join('');
-
-        dynamicNavbar.classList.remove('hidden');
-        logoMenu.classList.add('hidden');
-      });
     });
   </script>
 
