@@ -126,11 +126,29 @@
   };
 
   const mainNav = document.getElementById('main-nav');
+  let currentCategory = null; // state navbar saat ini
 
   function updateNav(category) {
+    currentCategory = category;
     mainNav.innerHTML = navMenus[category] || defaultMenu;
+
+    // Set listener baru untuk navbar yang berubah supaya tetap menggunakan state
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+
+        // Jika user klik Beranda, reset ke default
+        if(href === '/') {
+          updateNav(null);
+        } else {
+          // tetap pertahankan kategori saat ini
+          updateNav(currentCategory);
+        }
+      });
+    });
   }
 
+  // Event dropdown
   document.querySelectorAll('#logo-menu a').forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
@@ -141,9 +159,8 @@
     });
   });
 
-  document.querySelector('a[href="/"]').addEventListener('click', () => {
-    updateNav(null);
-  });
+  // Inisialisasi default
+  updateNav(null);
 </script>
 
 </body>
