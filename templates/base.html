@@ -126,39 +126,35 @@
   };
 
   const mainNav = document.getElementById('main-nav');
-  let currentCategory = null; // menyimpan navbar aktif
 
   function updateNav(category) {
-    currentCategory = category;
-    mainNav.innerHTML = navMenus[category] || defaultMenu;
-
-    // Pasang listener untuk semua link di navbar agar tetap mempertahankan kategori
-    mainNav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const href = link.getAttribute('href');
-
-    // Jika klik Beranda, reset ke navbar utama
-    if(href === '/') {
-      updateNav(null);
+    if (category) {
+      localStorage.setItem('activeCategory', category); // simpan kategori
+    } else {
+      localStorage.removeItem('activeCategory'); // hapus kategori
     }
-    // selain itu, biarkan navbar tetap kategori saat ini
-      });
-    });
+    mainNav.innerHTML = navMenus[category] || defaultMenu;
   }
 
-  // Dropdown click → ubah navbar sesuai kategori
+  // Pasang event listener untuk dropdown
   document.querySelectorAll('#logo-menu a').forEach(link => {
     link.addEventListener('click', (e) => {
-      e.preventDefault();
       const href = link.getAttribute('href');
       const category = href.split('/')[1].replace('panduan_', '').replace('bantuan_', '');
       updateNav(category);
-      logoMenu.classList.add('hidden');
     });
   });
 
-  // Inisialisasi navbar utama
-  updateNav(null);
+  // Klik Beranda → reset kategori
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('a')?.getAttribute('href') === '/') {
+      updateNav(null);
+    }
+  });
+
+  // Saat halaman di-load, cek kategori di localStorage
+  const savedCategory = localStorage.getItem('activeCategory');
+  updateNav(savedCategory);
 </script>
 
 
