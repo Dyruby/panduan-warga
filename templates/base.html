@@ -134,16 +134,14 @@
 
     // Pasang listener untuk semua link di navbar agar tetap mempertahankan kategori
     mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
+  link.addEventListener('click', (e) => {
+    const href = link.getAttribute('href');
 
-        // Jika klik Beranda, reset ke navbar utama
-        if(href === '/') {
-          updateNav(null);
-        } else if (category) {
-          // tetap pertahankan kategori saat ini
-          updateNav(category);
-        }
+    // Jika klik Beranda, reset ke navbar utama
+    if(href === '/') {
+      updateNav(null);
+    }
+    // selain itu, biarkan navbar tetap kategori saat ini
       });
     });
   }
