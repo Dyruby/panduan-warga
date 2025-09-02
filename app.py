@@ -166,6 +166,14 @@ def index():
 def panduan_sim():
     return render_template("panduan_sim.html")
 
+@app.route('/jenis_sim')
+def jenis_sim():
+    return render_template("jenis_sim.html")
+
+@app.route('/pengarahan')
+def pengarahan():
+    return render_template("pengarahan.html")
+
 @app.route('/panduan_bertani_di_rawa')
 def panduan_bertani_di_rawa():
     return render_template("panduan_bertani_di_rawa.html")
