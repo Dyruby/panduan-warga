@@ -97,12 +97,19 @@
   
 <!-- Script Navbar Dinamis -->
 <script>
-  const defaultMenu = `
-    <a href="/" class="hover:text-cyan-300 transition">🏠 Beranda</a>
-    <a href="/masukan" class="hover:text-green-300 transition">📢 Masukan & Kritikan</a>
-    <a href="/lihat" class="hover:text-yellow-300 transition">📋 Lihat Data</a>
-    <a href="/tentang" class="hover:text-purple-300 transition">ℹ️ Tentang</a>
-  `;
+  const categoryMap = {
+    "/panduan_sim": "sim",
+    "/jenis_sim": "sim",
+    "/syarat_sim": "sim",
+    "/panduan_bertani_di_rawa": "petani",
+    "/harga_pupuk": "petani",
+    "/teknik_bertani": "petani",
+    "/bantuan_layanan_darurat": "darurat",
+    "/pertolongan_pertama": "darurat",
+    "/panduan_hukum": "hukum",
+    "/hak_kewajiban": "hukum",
+    "/ai_online": "ai"
+  };
 
   const navMenus = {
     sim: `
@@ -122,41 +129,39 @@
     hukum: `
       <a href="/panduan_hukum" class="hover:text-cyan-300 transition">⚖️ Panduan Hukum</a>
       <a href="/hak_kewajiban" class="hover:text-green-300 transition">📜 Hak & Kewajiban</a>
+    `,
+    ai: `
+      <a href="/ai_online" class="hover:text-cyan-300 transition">🤖 AI Online</a>
+      <a href="/chat_ai" class="hover:text-green-300 transition">💬 Chat AI</a>
     `
   };
 
-  const mainNav = document.getElementById('main-nav');
-
   function updateNav(category) {
     if (category) {
-      localStorage.setItem('activeCategory', category); // simpan kategori
+      localStorage.setItem('activeCategory', category);
     } else {
-      localStorage.removeItem('activeCategory'); // hapus kategori
+      localStorage.removeItem('activeCategory');
     }
     mainNav.innerHTML = navMenus[category] || defaultMenu;
   }
 
-  // Pasang event listener untuk dropdown
   document.querySelectorAll('#logo-menu a').forEach(link => {
     link.addEventListener('click', (e) => {
       const href = link.getAttribute('href');
-      const category = href.split('/')[1].replace('panduan_', '').replace('bantuan_', '');
+      const category = categoryMap[href] || null;
       updateNav(category);
     });
   });
 
-  // Klik Beranda → reset kategori
   document.addEventListener('click', (e) => {
     if (e.target.closest('a')?.getAttribute('href') === '/') {
       updateNav(null);
     }
   });
 
-  // Saat halaman di-load, cek kategori di localStorage
   const savedCategory = localStorage.getItem('activeCategory');
   updateNav(savedCategory);
 </script>
-
 
 </body>
 </html>
