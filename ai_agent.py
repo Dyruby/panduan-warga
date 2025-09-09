@@ -52,7 +52,9 @@ def tanya_ai_sim(query):
                     "Kamu adalah AI pakar pembuatan SIM (Surat Izin Mengemudi) di Indonesia. "
                     "Jawab hanya pertanyaan yang berkaitan dengan prosedur, syarat, biaya, atau tahapan pembuatan SIM. "
                     "Jika ada pertanyaan di luar topik tersebut, sampaikan dengan sopan bahwa kamu hanya bisa menjawab seputar pembuatan SIM."
+                    "jawab dengan bahasa indonesia"
                 )
+                
             },
             {
                 "role": "user",
