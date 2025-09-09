@@ -174,6 +174,10 @@ def jenis_sim():
 def pengarahan():
     return render_template("pengarahan.html")
 
+@app.route('/hukum_sim')
+def hukum_sim():
+    return render_template("hukum_sim.html")
+
 @app.route('/panduan_bertani_di_rawa')
 def panduan_bertani_di_rawa():
     return render_template("panduan_bertani_di_rawa.html")
