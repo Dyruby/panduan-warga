@@ -5,15 +5,18 @@ from ai_agent import tanya_ai_layanan_darurat  # Tambahkan import ini
 from ai_agent import tanya_ai_hukum  # Tambahkan import ini
 import feedparser
 import mysql.connector
+from dotenv import load_dotenv
 
 app = Flask(__name__)
 
 # Konfigurasi koneksi ke MySQL
+load_dotenv() 
+
 db_config = {
-    "host": "localhost",
-    "user": "root",        # ganti sesuai user MySQL
-    "password": "",        # ganti sesuai password MySQL
-    "database": "db_masukan"    
+    "host": os.getenv("DB_HOST"),
+    "user": os.getenv("DB_USER"),
+    "password": os.getenv("DB_PASSWORD"),
+    "database": os.getenv("DB_NAME"),
 }
 
 def get_db_connection():

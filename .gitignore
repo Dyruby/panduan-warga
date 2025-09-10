@@ -37,3 +37,6 @@ dist/
 
 # Tailwind
 node_modules/
+
+# Ignore environment file
+.env
