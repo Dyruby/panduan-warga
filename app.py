@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from ai_agent import tanya_ai_pertanian  # Tambahkan import ini
 from ai_agent import tanya_ai_sim  # Tambahkan import ini
 from ai_agent import tanya_ai_layanan_darurat  # Tambahkan import ini
