@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from ai_agent import tanya_ai_pertanian  # Tambahkan import ini
 from ai_agent import tanya_ai_sim  # Tambahkan import ini
 from ai_agent import tanya_ai_layanan_darurat  # Tambahkan import ini
@@ -40,7 +40,11 @@ def kirim():
     cursor.close()
     conn.close()
 
-    return redirect(url_for("lihat"))
+    # Menentukan notifikasi
+    tipe = "Masukan" if "masukan" in isi.lower() else "Kritikan"
+    flash(f"✅ {tipe} berhasil dikirim!", "success")
+
+    return redirect(url_for("masukan"))  # kembali ke halaman masukan kosong
 
 @app.route("/lihat")
 def lihat():
