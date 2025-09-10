@@ -5,7 +5,7 @@ from ai_agent import tanya_ai_layanan_darurat  # Tambahkan import ini
 from ai_agent import tanya_ai_hukum  # Tambahkan import ini
 import feedparser
 import mysql.connector
-from dotenv import load_dotenvimport os
+from dotenv import load_dotenv
 import os
 
 
