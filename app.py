@@ -13,6 +13,8 @@ app = Flask(__name__)
 
 # Konfigurasi koneksi ke MySQL
 load_dotenv() 
+app.secret_key = os.getenv("SECRET_KEY")
+SECRET_VIEW_CODE = os.getenv("SECRET_VIEW_CODE")
 
 db_config = {
     "host": os.getenv("DB_HOST"),
@@ -28,6 +30,7 @@ def get_db_connection():
 def masukan():
     return render_template("masukan.html")
 
+# 🔹 Kirim Masukan
 @app.route("/kirim", methods=["POST"])
 def kirim():
     nama = request.form["nama"]
@@ -40,29 +43,28 @@ def kirim():
     cursor.close()
     conn.close()
 
-    return redirect(url_for("lihat"))
+    flash("✅ Masukan berhasil dikirim!", "success")
+    return redirect(url_for("masukan"))
 
-@app.route("/lihat")
-def lihat():
-    conn = get_db_connection()
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM masukan ORDER BY id DESC")
-    data = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return render_template("lihat.html", data=data)
+# 🔹 Halaman Masukkan Kode Rahasia
+@app.route("/lihat_rahasia", methods=["GET", "POST"])
+def lihat_rahasia():
+    if request.method == "POST":
+        kode = request.form.get("kode")
+        if kode == SECRET_VIEW_CODE:
+            conn = get_db_connection()
+            cursor = conn.cursor()
+            cursor.execute("SELECT * FROM masukan ORDER BY id DESC")
+            data = cursor.fetchall()
+            cursor.close()
+            conn.close()
+            return render_template("lihat.html", data=data)
+        else:
+            flash("❌ Kode rahasia salah!", "error")
+            return redirect(url_for("lihat_rahasia"))
+    return render_template("kode_rahasia.html")
 
-# 🔒 Cek kode rahasia (dipanggil via JS)
-@app.route("/check_secret", methods=["POST"])
-def check_secret():
-    data = request.get_json()
-    code = data.get("code", "")
-    if code == SECRET_CODE:
-        return jsonify({"success": True, "redirect": url_for("lihat")})
-    return jsonify({"success": False})
-
-# ==================== CRUD ====================
-
+# 🔹 Edit Masukan
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
     conn = get_db_connection()
@@ -75,7 +77,7 @@ def edit(id):
         conn.commit()
         cursor.close()
         conn.close()
-        return redirect(url_for("lihat"))
+        return redirect(url_for("lihat_rahasia"))
 
     cursor.execute("SELECT * FROM masukan WHERE id=%s", (id,))
     data = cursor.fetchone()
@@ -83,6 +85,7 @@ def edit(id):
     conn.close()
     return render_template("edit.html", data=data)
 
+# 🔹 Hapus Masukan
 @app.route("/hapus/<int:id>")
 def hapus(id):
     conn = get_db_connection()
@@ -91,7 +94,7 @@ def hapus(id):
     conn.commit()
     cursor.close()
     conn.close()
-    return redirect(url_for("lihat"))
+    return redirect(url_for("lihat_rahasia"))
 
 @app.route("/search")
 def search():
