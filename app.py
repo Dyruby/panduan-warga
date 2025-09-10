@@ -11,6 +11,7 @@ import os
 
 app = Flask(__name__)
 
+app.secret_key = os.environ.get("SECRET_KEY")
 # Konfigurasi koneksi ke MySQL
 load_dotenv() 
 
