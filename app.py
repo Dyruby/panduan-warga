@@ -50,10 +50,19 @@ def lihat():
     data = cursor.fetchall()
     cursor.close()
     conn.close()
-
     return render_template("lihat.html", data=data)
 
-# 🔹 Edit masukan
+# 🔒 Cek kode rahasia (dipanggil via JS)
+@app.route("/check_secret", methods=["POST"])
+def check_secret():
+    data = request.get_json()
+    code = data.get("code", "")
+    if code == SECRET_CODE:
+        return jsonify({"success": True, "redirect": url_for("lihat")})
+    return jsonify({"success": False})
+
+# ==================== CRUD ====================
+
 @app.route("/edit/<int:id>", methods=["GET", "POST"])
 def edit(id):
     conn = get_db_connection()
@@ -74,7 +83,6 @@ def edit(id):
     conn.close()
     return render_template("edit.html", data=data)
 
-# 🔹 Hapus masukan
 @app.route("/hapus/<int:id>")
 def hapus(id):
     conn = get_db_connection()

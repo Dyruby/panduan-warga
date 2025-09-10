@@ -12,7 +12,7 @@
       font-family: 'Segoe UI', sans-serif;
     }
     .glass {
-      background: rgba(0, 0, 0, 0.6); /* lebih gelap */
+      background: rgba(0, 0, 0, 0.6);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.1);
@@ -48,23 +48,21 @@
       </div>
 
       <!-- Menu Navigasi -->
-    <!-- Menu Navigasi -->
-<nav id="main-nav" class="hidden md:flex space-x-8 font-semibold">
-  <a href="/" class="hover:text-cyan-300 transition">🏠 Beranda</a>
-  <a href="/masukan" class="hover:text-green-300 transition">📢 Masukan & Kritikan</a>
-  <a href="/lihat" class="hover:text-yellow-300 transition">📋 Lihat Data</a>
-  <a href="/tentang" class="hover:text-purple-300 transition">ℹ️ Tentang</a>
-</nav>
+      <nav id="main-nav" class="hidden md:flex space-x-8 font-semibold">
+        <a href="/" class="hover:text-cyan-300 transition">🏠 Beranda</a>
+        <a href="/masukan" class="hover:text-green-300 transition">📢 Masukan & Kritikan</a>
+        <a href="/lihat" class="hover:text-yellow-300 transition">📋 Lihat Data</a>
+        <a href="/tentang" class="hover:text-purple-300 transition">ℹ️ Tentang</a>
+      </nav>
 
-
-    <!-- Search Bar -->
-    <div class="hidden md:block">
-      <form action="/search" method="get" class="flex items-center bg-gray-800 rounded-lg px-2">
-        <input type="text" name="q" placeholder="Cari..."
-               class="bg-transparent p-2 text-sm focus:outline-none text-white">
-        <button type="submit" class="text-cyan-400 hover:text-cyan-300">🔍</button>
-      </form>
-    </div>
+      <!-- Search Bar -->
+      <div class="hidden md:block">
+        <form action="/search" method="get" class="flex items-center bg-gray-800 rounded-lg px-2">
+          <input type="text" name="q" placeholder="Cari..."
+                class="bg-transparent p-2 text-sm focus:outline-none text-white">
+          <button type="submit" class="text-cyan-400 hover:text-cyan-300">🔍</button>
+        </form>
+      </div>
     </div>
   </header>
 
@@ -87,7 +85,6 @@
       logoMenu.classList.toggle('hidden');
     });
 
-    // Klik di luar dropdown → close
     document.addEventListener('click', (e) => {
       if (!logoBtn.contains(e.target) && !logoMenu.contains(e.target)) {
         logoMenu.classList.add('hidden');
@@ -95,103 +92,124 @@
     });
   </script>
   
-<!-- Script Navbar Dinamis -->
-<script>
-  const defaultMenu = `
-    <a href="/" class="hover:text-cyan-300 transition">🏠 Beranda</a>
-    <a href="/masukan" class="hover:text-green-300 transition">📢 Masukan & Kritikan</a>
-    <a href="/lihat" class="hover:text-yellow-300 transition">📋 Lihat Data</a>
-    <a href="/tentang" class="hover:text-purple-300 transition">ℹ️ Tentang</a>
-  `;
+  <!-- Script Navbar Dinamis -->
+  <script>
+    const defaultMenu = `
+      <a href="/" class="hover:text-cyan-300 transition">🏠 Beranda</a>
+      <a href="/masukan" class="hover:text-green-300 transition">📢 Masukan & Kritikan</a>
+      <a href="/tentang" class="hover:text-purple-300 transition">ℹ️ Tentang</a>
+    `;
 
-  const navMenus = {
-    sim: `
-    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center">
-      <a href="/panduan_sim" class="flex flex-col items-center hover:text-cyan-300 transition">
-        📘 <span>Pengertian SIM</span>
-      </a>
-      <a href="/jenis_sim" class="flex flex-col items-center hover:text-green-300 transition">
-        🚗 <span>Jenis SIM</span>
-      </a>
-      <a href="/pengarahan" class="flex flex-col items-center hover:text-yellow-300 transition">
-        📋 <span>Fungsi SIM</span>
-      </a>
-      <a href="/hukum_sim" class="flex flex-col items-center hover:text-yellow-300 transition">
-        ⚖️ <span>Hukum SIM</span>
-      </a>
-      <a href="/jenis_sim" class="flex flex-col items-center hover:text-green-300 transition">
-        📜 <span>Cara Membuat & Perpanjang SIM</span>
-      </a>
-    </div>
-    `,
-    petani: `
-      <a href="/panduan_bertani_di_rawa" class="hover:text-cyan-300 transition">🌾 Panduan Bertani</a>
-      <a href="/harga_pupuk" class="hover:text-green-300 transition">💰 Harga Pupuk</a>
-      <a href="/teknik_bertani" class="hover:text-yellow-300 transition">📖 Teknik Bertani</a>
-    `,
-    darurat: `
-      <a href="/bantuan_layanan_darurat" class="hover:text-cyan-300 transition">🚨 Nomor Darurat</a>
-      <a href="/pertolongan_pertama" class="hover:text-green-300 transition">🩹 Pertolongan Pertama</a>
-    `,
-    hukum: `
-      <a href="/panduan_hukum" class="hover:text-cyan-300 transition">⚖️ Panduan Hukum</a>
-      <a href="/hak_kewajiban" class="hover:text-green-300 transition">📜 Hak & Kewajiban</a>
-    `,
-    ai: `
-      <a href="/ai_online" class="hover:text-cyan-300 transition">🤖 AI Online</a>
-      <a href="/chat_ai" class="hover:text-green-300 transition">💬 Chat AI</a>
-    `
-  };
+    const navMenus = {
+      sim: `
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 text-center">
+        <a href="/panduan_sim" class="flex flex-col items-center hover:text-cyan-300 transition">
+          📘 <span>Pengertian SIM</span>
+        </a>
+        <a href="/jenis_sim" class="flex flex-col items-center hover:text-green-300 transition">
+          🚗 <span>Jenis SIM</span>
+        </a>
+        <a href="/pengarahan" class="flex flex-col items-center hover:text-yellow-300 transition">
+          📋 <span>Fungsi SIM</span>
+        </a>
+        <a href="/hukum_sim" class="flex flex-col items-center hover:text-yellow-300 transition">
+          ⚖️ <span>Hukum SIM</span>
+        </a>
+        <a href="/jenis_sim" class="flex flex-col items-center hover:text-green-300 transition">
+          📜 <span>Cara Membuat & Perpanjang SIM</span>
+        </a>
+      </div>
+      `,
+      petani: `
+        <a href="/panduan_bertani_di_rawa" class="hover:text-cyan-300 transition">🌾 Panduan Bertani</a>
+        <a href="/harga_pupuk" class="hover:text-green-300 transition">💰 Harga Pupuk</a>
+        <a href="/teknik_bertani" class="hover:text-yellow-300 transition">📖 Teknik Bertani</a>
+      `,
+      darurat: `
+        <a href="/bantuan_layanan_darurat" class="hover:text-cyan-300 transition">🚨 Nomor Darurat</a>
+        <a href="/pertolongan_pertama" class="hover:text-green-300 transition">🩹 Pertolongan Pertama</a>
+      `,
+      hukum: `
+        <a href="/panduan_hukum" class="hover:text-cyan-300 transition">⚖️ Panduan Hukum</a>
+        <a href="/hak_kewajiban" class="hover:text-green-300 transition">📜 Hak & Kewajiban</a>
+      `,
+      ai: `
+        <a href="/ai_online" class="hover:text-cyan-300 transition">🤖 AI Online</a>
+        <a href="/chat_ai" class="hover:text-green-300 transition">💬 Chat AI</a>
+      `
+    };
 
-  const categoryMap = {
-    "/panduan_sim": "sim",
-    "/jenis_sim": "sim",
-    "/pengarahan": "sim",
-    "/panduan_bertani_di_rawa": "petani",
-    "/harga_pupuk": "petani",
-    "/teknik_bertani": "petani",
-    "/bantuan_layanan_darurat": "darurat",
-    "/pertolongan_pertama": "darurat",
-    "/panduan_hukum": "hukum",
-    "/hak_kewajiban": "hukum",
-    "/ai_online": "ai",
-    "/chat_ai": "ai"
-  };
+    const categoryMap = {
+      "/panduan_sim": "sim",
+      "/jenis_sim": "sim",
+      "/pengarahan": "sim",
+      "/panduan_bertani_di_rawa": "petani",
+      "/harga_pupuk": "petani",
+      "/teknik_bertani": "petani",
+      "/bantuan_layanan_darurat": "darurat",
+      "/pertolongan_pertama": "darurat",
+      "/panduan_hukum": "hukum",
+      "/hak_kewajiban": "hukum",
+      "/ai_online": "ai",
+      "/chat_ai": "ai"
+    };
 
-  const mainNav = document.getElementById('main-nav');
+    const mainNav = document.getElementById('main-nav');
 
-  function updateNav(category) {
-    if (category) {
-      localStorage.setItem('activeCategory', category);
-    } else {
-      localStorage.removeItem('activeCategory');
+    function updateNav(category) {
+      if (category) {
+        localStorage.setItem('activeCategory', category);
+      } else {
+        localStorage.removeItem('activeCategory');
+      }
+      mainNav.innerHTML = navMenus[category] || defaultMenu;
     }
-    mainNav.innerHTML = navMenus[category] || defaultMenu;
-  }
 
-  // Klik menu dropdown → simpan kategori
-  document.querySelectorAll('#logo-menu a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      const category = categoryMap[href] || null;
-      updateNav(category);
+    document.querySelectorAll('#logo-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        const href = link.getAttribute('href');
+        const category = categoryMap[href] || null;
+        updateNav(category);
+      });
     });
-  });
 
-  // Klik Beranda → reset kategori
-  document.addEventListener('click', (e) => {
-    if (e.target.closest('a')?.getAttribute('href') === '/') {
-      updateNav(null);
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('a')?.getAttribute('href') === '/') {
+        updateNav(null);
+      }
+    });
+
+    const currentPath = window.location.pathname;
+    const pathCategory = categoryMap[currentPath];
+    const savedCategory = localStorage.getItem('activeCategory');
+    updateNav(pathCategory || savedCategory);
+  </script>
+
+  <!-- Script Kode Rahasia -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  let buffer = "";
+  document.addEventListener('keydown', (e) => {
+    buffer += e.key.toLowerCase();
+    if (buffer.length > 30) buffer = buffer.slice(-30);
+
+    if (e.key === "Enter") {
+      const code = buffer.replace("enter", "");
+      fetch("/check_secret", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({code})
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          window.location.href = data.redirect;
+        }
+      });
+      buffer = "";
     }
   });
-
-  // 🔥 Saat halaman diload, deteksi kategori dari URL
-  const currentPath = window.location.pathname;
-  const pathCategory = categoryMap[currentPath];
-  const savedCategory = localStorage.getItem('activeCategory');
-  updateNav(pathCategory || savedCategory);
+});
 </script>
-
-
 </body>
 </html>
