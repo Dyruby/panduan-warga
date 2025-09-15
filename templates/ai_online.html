@@ -2,31 +2,40 @@
 {% block title %}AI Online Untuk membantu warga{% endblock %}
 
 {% block content %}
-<div class="grid md:grid-cols-3 gap-6">
-  <div class="glass p-6 rounded-xl hover:shadow-xl transition-all">
-    <h2 class="text-xl font-semibold text-cyan-300 mb-2">📄 Pembuatan SIM</h2>
-    <p>ChatBot ai yang bisa membantu perihal SIM.</p>
-    <a href="/sim" class="text-cyan-400 hover:underline mt-4 inline-block">Buka</a>
+<h2 class="text-2xl font-bold mb-6">📰 Berita Terkini</h2>
+
+<div class="grid md:grid-cols-2 gap-6">
+  {% for b in berita %}
+  <div class="bg-gray-800/50 backdrop-blur-md p-5 rounded-2xl shadow-lg hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
+    
+    <!-- Judul -->
+    <h3 class="text-lg font-semibold text-blue-400 hover:underline mb-2">
+      <a href="{{ b.link }}" target="_blank">
+        {{ b.judul }}
+      </a>
+    </h3>
+    
+    <!-- Meta Info -->
+    <div class="glass p-5 rounded-2xl shadow-lg hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
+      <span>{{ b.tanggal }}</span>
+      <span class="px-2 py-1 text-xs rounded-full 
+        {% if b.sumber == 'Kompas' %} bg-red-500/20 text-red-400
+        {% elif b.sumber == 'Detik' %} bg-blue-500/20 text-blue-400
+        {% else %} bg-green-500/20 text-green-400 {% endif %}">
+        {{ b.sumber }}
+      </span>
+    </div>
+    
+    <!-- Ringkasan -->
+    <p class="text-gray-300 leading-relaxed text-sm">
+      {{ b.konten|safe }}
+    </p>
   </div>
-  <div class="glass p-6 rounded-xl hover:shadow-xl transition-all">
-    <h2 class="text-xl font-semibold text-green-300 mb-2">🌾 Petani Pintar</h2>
-    <p>ChatBot ai yang bisa membantu perihal pertanian terutama di bagian berawa.</p>
-    <a href="/petani" class="text-green-300 hover:underline mt-4 inline-block">Buka</a>
-  </div>
-  <div class="glass p-6 rounded-xl hover:shadow-xl transition-all">
-    <h2 class="text-xl font-semibold text-red-300 mb-2">🚨 Layanan Darurat</h2>
-    <p>ChatBot ai yang bisa membantu memberikan no darurat, arahan pertolongan.</p>
-    <a href="/darurat" class="text-red-300 hover:underline mt-4 inline-block">Buka</a>
-  </div>
-  <div class="glass p-6 rounded-xl hover:shadow-xl transition-all">
-  <h2 class="text-xl font-semibold text-yellow-300 mb-2">⚖️ Hukum</h2>
-  <p>ChatBot AI yang membantu memberikan informasi seputar hukum dan peraturan yang berlaku.</p>
-  <a href="/hukum" class="text-yellow-300 hover:underline mt-4 inline-block">Buka</a>
+  {% endfor %}
 </div>
 
-</div><br><br>
-
-  <!-- Tombol Kembali -->
+</div>
+<!-- Tombol Kembali -->
   <div class="mt-10 text-center">
     <a href="/" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
       ⬅ Kembali ke Beranda

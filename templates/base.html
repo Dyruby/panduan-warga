@@ -184,32 +184,5 @@
     const savedCategory = localStorage.getItem('activeCategory');
     updateNav(pathCategory || savedCategory);
   </script>
-
-  <!-- Script Kode Rahasia -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  let buffer = "";
-  document.addEventListener('keydown', (e) => {
-    buffer += e.key.toLowerCase();
-    if (buffer.length > 30) buffer = buffer.slice(-30);
-
-    if (e.key === "Enter") {
-      const code = buffer.replace("enter", "");
-      fetch("/check_secret", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({code})
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.success) {
-          window.location.href = data.redirect;
-        }
-      });
-      buffer = "";
-    }
-  });
-});
-</script>
 </body>
 </html>
