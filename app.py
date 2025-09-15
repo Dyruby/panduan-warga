@@ -128,8 +128,8 @@ RSS_FEEDS = {
     "Detik": "https://rss.detik.com/index.php/detikcom"
 }
 
-@app.route("/")
-def home():
+@app.route("/berita_terkini")
+def berita_terkini():
     berita = []
 
     for sumber, url in RSS_FEEDS.items():
@@ -146,7 +146,7 @@ def home():
     # urutkan berita dari yang terbaru (kalau ada published)
     berita = sorted(berita, key=lambda x: x["tanggal"], reverse=True)
 
-    return render_template("ai_online.html", berita=berita)
+    return render_template("berita_terkini.html", berita=berita)
 
 # Halaman Ujian Teori
 @app.route("/sim/ujian", methods=["GET", "POST"])
@@ -199,9 +199,9 @@ def bantuan_layanan_darurat():
 def panduan_hukum():
     return render_template("panduan_hukum.html")
 
-@app.route('/ai_online')
-def ai_online():
-    return render_template("ai_online.html")
+@app.route('/berita_terkini')
+def berita_terkini():
+    return render_template("berita_terkini.html")
 
 @app.route("/tentang")
 def tentang():
