@@ -146,7 +146,7 @@ def home():
     # urutkan berita dari yang terbaru (kalau ada published)
     berita = sorted(berita, key=lambda x: x["tanggal"], reverse=True)
 
-    return render_template("index.html", berita=berita)
+    return render_template("ai_online.html", berita=berita)
 
 # Halaman Ujian Teori
 @app.route("/sim/ujian", methods=["GET", "POST"])
