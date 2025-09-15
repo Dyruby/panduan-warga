@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}AI Online Untuk membantu warga{% endblock %}
+{% block title %}Berita terkini{% endblock %}
 
 {% block content %}
 <h2 class="text-2xl font-bold mb-6">📰 Berita Terkini</h2>
@@ -16,8 +16,8 @@
     </h3>
     
     <!-- Meta Info -->
-    <div class="glass p-5 rounded-2xl shadow-lg hover:scale-[1.02] hover:shadow-xl transition-all duration-300">
-      <span>{{ b.tanggal }}</span>
+    <div class="flex items-center space-x-3 mb-3">
+      <span class="text-gray-400 text-sm">{{ b.tanggal }}</span>
       <span class="px-2 py-1 text-xs rounded-full 
         {% if b.sumber == 'Kompas' %} bg-red-500/20 text-red-400
         {% elif b.sumber == 'Detik' %} bg-blue-500/20 text-blue-400
@@ -25,7 +25,7 @@
         {{ b.sumber }}
       </span>
     </div>
-    
+
     <!-- Ringkasan -->
     <p class="text-gray-300 leading-relaxed text-sm">
       {{ b.konten|safe }}
@@ -33,10 +33,11 @@
   </div>
   {% endfor %}
 </div>
+
 <!-- Tombol Kembali -->
-  <div class="mt-10 text-center">
-    <a href="/" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
-      ⬅ Kembali ke Beranda
-    </a>
-  </div>
+<div class="mt-10 text-center">
+  <a href="/" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+    ⬅ Kembali ke Beranda
+  </a>
+</div>
 {% endblock %}
