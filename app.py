@@ -199,10 +199,6 @@ def bantuan_layanan_darurat():
 def panduan_hukum():
     return render_template("panduan_hukum.html")
 
-@app.route('/berita_terkini')
-def berita_terkini():
-    return render_template("berita_terkini.html")
-
 @app.route("/tentang")
 def tentang():
     return render_template("tentang.html")
