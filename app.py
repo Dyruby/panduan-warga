@@ -1,3 +1,5 @@
+import markdown
+from markupsafe import Markup
 from flask import Flask, render_template, request, redirect, url_for, flash
 from ai_agent import tanya_ai_pertanian  # Tambahkan import ini
 from ai_agent import tanya_ai_sim  # Tambahkan import ini
@@ -212,7 +214,9 @@ def sim():
     response = ""
     if request.method == 'POST':
         question = request.form['question']
-        response = tanya_ai_sim(question)
+        raw_response = tanya_ai_sim(question)
+        # Konversi Markdown → HTML
+        response = Markup(markdown.markdown(raw_response))
     return render_template("sim.html", response=response)
 
 @app.route('/petani', methods=['GET', 'POST'])
@@ -220,7 +224,9 @@ def petani():
     response = ""
     if request.method == 'POST':
         question = request.form['question']
-        response = tanya_ai_pertanian(question)
+        raw_response = tanya_ai_pertanian(question)
+        # Konversi Markdown → HTML
+        response = Markup(markdown.markdown(raw_response))
     return render_template("petani.html", response=response)
 
 @app.route('/darurat', methods=['GET', 'POST'])
@@ -228,7 +234,9 @@ def darurat():
     response = ""
     if request.method == 'POST':
         question = request.form['question']
-        response = tanya_ai_layanan_darurat(question)
+        raw_response = tanya_ai_layanan_darurat(question)
+        # Konversi Markdown → HTML
+        response = Markup(markdown.markdown(raw_response))
     return render_template("darurat.html", response=response)
 
 @app.route('/hukum', methods=['GET', 'POST'])
@@ -236,7 +244,9 @@ def hukum():
     response = ""
     if request.method == 'POST':
         question = request.form['question']
-        response = tanya_ai_hukum(question)
+        raw_response = tanya_ai_hukum(question)
+        # Konversi Markdown → HTML
+        response = Markup(markdown.markdown(raw_response))
     return render_template("hukum.html", response=response)
 
 if __name__ == '__main__':
