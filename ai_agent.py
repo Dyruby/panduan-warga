@@ -1,135 +1,81 @@
-from dotenv import load_dotenv  # ✅ Tambahkan ini
+from dotenv import load_dotenv
 import os
 import requests
 
-
+# 🔑 Ambil API Key dari .env
 load_dotenv()
 API_KEY = os.getenv("OPENROUTER_API_KEY")
 MODEL = "meta-llama/llama-3-8b-instruct"
 
+# 🛠️ Fungsi umum untuk memanggil API
+def call_ai(system_prompt, query):
+    headers = {
+        "Authorization": f"Bearer {API_KEY}",
+        "Content-Type": "application/json"
+    }
 
+    body = {
+        "model": MODEL,
+        "messages": [
+            {"role": "system", "content": system_prompt},
+            {"role": "user", "content": query}
+        ]
+    }
+
+    try:
+        response = requests.post(
+            "https://openrouter.ai/api/v1/chat/completions",
+            headers=headers,
+            json=body,
+            timeout=30
+        )
+        if response.status_code == 200:
+            return response.json()["choices"][0]["message"]["content"]
+        else:
+            return f"⚠️ Error {response.status_code}: {response.text}"
+    except requests.exceptions.Timeout:
+        return "⚠️ Waktu koneksi habis, coba lagi."
+    except Exception as e:
+        return f"⚠️ Terjadi kesalahan: {str(e)}"
+
+# 🌾 Pertanian
 def tanya_ai_pertanian(query):
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json"
-    }
+    system_prompt = (
+        "Kamu adalah AI pakar pertanian rawa-rawa. "
+        "Jawab hanya pertanyaan yang relevan dengan pertanian di daerah rawa. "
+        "Jika tidak relevan, katakan dengan sopan bahwa kamu hanya fokus pada pertanian rawa. "
+        "Jawablah dengan bahasa Indonesia yang ringkas, akurat, dan jelas."
+    )
+    return call_ai(system_prompt, query)
 
-    body = {
-        "model": MODEL,
-        "messages": [
-            {
-                "role": "system",
-                "content": (
-                    "Kamu adalah AI pakar pertanian rawa-rawa. "
-                    "Jawab hanya pertanyaan yang relevan dengan pertanian di daerah rawa. "
-                    "Jika tidak relevan, katakan dengan sopan bahwa kamu hanya fokus pada pertanian rawa."
-                )
-            },
-            {
-                "role": "user",
-                "content": query
-            }
-        ]
-    }
-
-    response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=body)
-    if response.status_code == 200:
-        return response.json()['choices'][0]['message']['content']
-    print(response.text)  # tambahkan ini untuk lihat error dari API
-    return "⚠️ Gagal menghubungi AI."
-
+# 🪪 SIM
 def tanya_ai_sim(query):
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json"
-    }
+    system_prompt = (
+        "Kamu adalah AI pakar pembuatan SIM (Surat Izin Mengemudi) di Indonesia. "
+        "Fokus hanya pada prosedur, syarat, biaya, atau tahapan pembuatan dan perpanjangan SIM. "
+        "Jika ada pertanyaan di luar topik tersebut, balas dengan sopan bahwa kamu hanya bisa menjawab seputar SIM. "
+        "Jawablah dengan bahasa Indonesia yang jelas, ringkas, akurat, dan gunakan poin bila perlu."
+    )
+    return call_ai(system_prompt, query)
 
-    body = {
-        "model": MODEL,
-        "messages": [
-            {
-                "role": "system",
-                "content": (
-                    "Kamu adalah AI pakar pembuatan SIM (Surat Izin Mengemudi) di Indonesia. "
-                    "Jawab hanya pertanyaan yang berkaitan dengan prosedur, syarat, biaya, atau tahapan pembuatan SIM. "
-                    "Jika ada pertanyaan di luar topik tersebut, sampaikan dengan sopan bahwa kamu hanya bisa menjawab seputar pembuatan SIM."
-                    "jawab dengan bahasa indonesia"
-                )
-                
-            },
-            {
-                "role": "user",
-                "content": query
-            }
-        ]
-    }
-
-    response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=body)
-    if response.status_code == 200:
-        return response.json()['choices'][0]['message']['content']
-    return "⚠️ Gagal menghubungi AI."
-
+# 🚨 Layanan Darurat
 def tanya_ai_layanan_darurat(query):
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json"
-    }
+    system_prompt = (
+        "Kamu adalah AI asisten untuk membantu masyarakat mengenai layanan darurat di Indonesia. "
+        "Fokus hanya pada: nomor telepon penting (polisi, ambulans, pemadam), prosedur dalam keadaan darurat, "
+        "tindakan pertama saat kecelakaan, kebakaran, bencana, serta panduan keselamatan lainnya. "
+        "Jika pertanyaan tidak relevan, balas dengan sopan bahwa kamu hanya dapat membantu seputar layanan darurat. "
+        "Jawablah dengan bahasa Indonesia yang singkat, padat, dan jelas."
+    )
+    return call_ai(system_prompt, query)
 
-    body = {
-        "model": MODEL,
-        "messages": [
-            {
-                "role": "system",
-                "content": (
-                    "Kamu adalah AI asisten untuk membantu masyarakat mengenai layanan darurat di Indonesia. "
-    "Fokuskan jawabanmu hanya pada hal-hal terkait layanan darurat seperti: nomor telepon penting (polisi, ambulans, pemadam), prosedur dalam keadaan darurat, "
-    "tindakan pertama yang harus dilakukan saat terjadi kecelakaan, kebakaran, atau bencana, dan panduan keselamatan lainnya. "
-    "Jika ada pertanyaan yang tidak relevan dengan topik layanan darurat, balas dengan sopan seperti: "
-    "Maaf, saya hanya dapat membantu seputar informasi dan panduan layanan darurat di Indonesia."
-                )
-            },
-            {
-                "role": "user",
-                "content": query
-            }
-        ]
-    }
-
-    response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=body)
-    if response.status_code == 200:
-        return response.json()['choices'][0]['message']['content']
-    return "⚠️ Gagal menghubungi AI."
-
+# ⚖️ Hukum
 def tanya_ai_hukum(query):
-    headers = {
-        "Authorization": f"Bearer {API_KEY}",
-        "Content-Type": "application/json"
-    }
-
-    body = {
-        "model": MODEL,
-        "messages": [
-            {
-                "role": "system",
-                "content": (
-                    "Kamu adalah asisten AI hukum yang membantu warga Indonesia memahami hukum, pasal, dan hak yang berlaku. "
-                    "Jawabanmu harus berdasarkan hukum positif Indonesia, seperti UUD 1945, KUHP, KUHPerdata, dan UU resmi seperti UU No. 11 Tahun 2008 tentang ITE, UU No. 36 Tahun 2009 tentang Kesehatan, dan lainnya. "
-                    "Sertakan referensi pasal atau undang-undang jika memungkinkan. "
-                    "Jika pertanyaan tidak relevan dengan topik hukum, kamu harus membalas dengan sopan seperti: "
-                    "'Maaf, saya hanya dapat membantu seputar pertanyaan yang berkaitan dengan hukum dan perundang-undangan yang berlaku di Indonesia.'"
-                )
-            },
-            {
-                "role": "user",
-                "content": query
-            }
-        ]
-    }
-
-    response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=body)
-    if response.status_code == 200:
-        return response.json()['choices'][0]['message']['content']
-    return "⚠️ Gagal menghubungi AI."
-
-
-
+    system_prompt = (
+        "Kamu adalah AI asisten hukum untuk warga Indonesia. "
+        "Jawabanmu harus berdasarkan hukum positif Indonesia: UUD 1945, KUHP, KUHPerdata, dan undang-undang resmi "
+        "seperti UU ITE, UU Kesehatan, dll. Sertakan referensi pasal atau undang-undang bila memungkinkan. "
+        "Jika pertanyaan tidak relevan, balas dengan sopan bahwa kamu hanya menjawab seputar hukum di Indonesia. "
+        "Gunakan bahasa Indonesia formal, jelas, dan akurat."
+    )
+    return call_ai(system_prompt, query)
