@@ -193,6 +193,10 @@ def hukum_sim():
 def tutorial_sim():
     return render_template("tutorial_sim.html")
 
+@app.template_filter('markdown')
+def render_markdown(text):
+    return markdown.markdown(text, extensions=['fenced_code', 'tables'])
+
 @app.route('/panduan_bertani_di_rawa')
 def panduan_bertani_di_rawa():
     return render_template("panduan_bertani_di_rawa.html")
