@@ -16,6 +16,8 @@ app = Flask(__name__)
 # Konfigurasi koneksi ke MySQL
 load_dotenv() 
 
+SECRET_CODE = os.getenv("SECRET_CODE", "").strip().lower()
+
 # set secret key dari .env
 app.secret_key = os.getenv("SECRET_KEY")
 
@@ -97,39 +99,54 @@ def hapus(id):
     conn.close()
     return redirect(url_for("lihat"))
 
-@app.route("/search")
+@app.route("/search", methods=["GET"])
 def search():
-    query = request.args.get("q", "").lower()
+    query = (request.args.get("q") or "").strip().lower()
+    user_ip = request.remote_addr
 
-    # Mapping keyword → route navbar
+    # Mapping normal (JANGAN masukkan kata rahasia di sini)
     keyword_mapping = {
         "sim": "/panduan_sim",
         "buat sim": "/panduan_sim",
         "perpanjang sim": "/panduan_sim",
-
         "petani": "/panduan_bertani_di_rawa",
         "pertanian": "/panduan_bertani_di_rawa",
         "padi": "/panduan_bertani_di_rawa",
-
         "darurat": "/bantuan_layanan_darurat",
         "ambulans": "/bantuan_layanan_darurat",
         "polisi": "/bantuan_layanan_darurat",
         "pemadam": "/bantuan_layanan_darurat",
-
         "hukum": "/panduan_hukum",
         "peraturan": "/panduan_hukum",
         "uu": "/panduan_hukum",
-        
-        "akesumi":  "/lihat",
     }
 
-    # cek keyword ada di mapping → redirect langsung
-    for key, route in keyword_mapping.items():
-        if key in query:
-            return redirect(route)
+    # 1) Jika query adalah secret (yang disimpan di .env), langsung akses lihat tanpa simpan riwayat
+    if SECRET_CODE and query == SECRET_CODE:
+        # tidak menyimpan query ke riwayat
+        # jika butuh IP-binding atau mekanisme owner, tambahkan pengecekan DB di sini
+        return redirect(url_for("lihat"))
 
-    # fallback kalau tidak cocok → tampilkan search.html
-    return render_template("search.html", query=query, hasil=[])
+    # 2) Bukan secret → proses normal: cari di mapping lalu simpan riwayat bila ada query
+    hasil = []
+    if query in keyword_mapping:
+        hasil.append({
+            "judul": query.title(),
+            "konten": f"Panduan terkait {query}",
+            "link": keyword_mapping[query]
+        })
+
+    # contoh menyimpan riwayat (MySQL / SQLite sesuai implementasimu)
+    if query:
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        cursor.execute("INSERT INTO riwayat (query, waktu, ip) VALUES (%s, NOW(), %s)",
+                        (query, user_ip))
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+    return render_template("search.html", query=query, hasil=hasil)
 
 # daftar RSS feed yang mau ditarik
 RSS_FEEDS = {
