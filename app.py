@@ -16,6 +16,12 @@ app = Flask(__name__)
 # Konfigurasi koneksi ke MySQL
 load_dotenv() 
 
+# set secret key dari .env
+app.secret_key = os.getenv("SECRET_KEY")
+
+# cek apakah secret key berhasil dibaca
+print("SECRET_KEY:", app.secret_key)
+
 db_config = {
     "host": os.getenv("DB_HOST"),
     "user": os.getenv("DB_USER"),
