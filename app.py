@@ -114,6 +114,7 @@ def search():
         "hukum": "/panduan_hukum",
         "peraturan": "/panduan_hukum",
         "uu": "/panduan_hukum",
+        "akesumi": "/lihat",
     }
 
     # 🔒 cek kode rahasia
