@@ -40,12 +40,37 @@
   </section>
 
   <!-- fitur tersembunyi -->
-  <section class="mb-6 text-center">
-  <a href="/lihat" 
-     class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-6 rounded-full transition shadow-lg">
-    tekan panduan warga dan anda akan terkejut
-  </a>
-</section>
+  <p>
+    <span id="secretTrigger" class="text-cyan-400 font-semibold">
+      tekan panduan warga dan anda akan terkejut
+    </span>
+  </p>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const el = document.getElementById("secretTrigger");
+    if (!el) return;
+
+    // Default: teks biasa
+    el.style.cursor = "default";
+    el.style.pointerEvents = "none";
+
+    // Cek apakah visitor adalah owner
+    fetch("/is_owner")
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.owner) {
+          // Ubah jadi link
+          const a = document.createElement("a");
+          a.href = "/lihat";
+          a.textContent = el.textContent;
+          a.className = "inline-block bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded transition";
+          el.parentNode.replaceChild(a, el);
+        }
+      })
+      .catch(err => console.error(err));
+  });
+  </script>
 
   <!-- pembuat dan alasan -->
   <section class="mb-6">

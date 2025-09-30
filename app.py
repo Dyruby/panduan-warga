@@ -1,6 +1,6 @@
 import markdown
 from markupsafe import Markup
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
 from ai_agent import tanya_ai_pertanian  # Tambahkan import ini
 from ai_agent import tanya_ai_sim  # Tambahkan import ini
 from ai_agent import tanya_ai_layanan_darurat  # Tambahkan import ini
@@ -233,6 +233,52 @@ def panduan_hukum():
 @app.route("/tentang")
 def tentang():
     return render_template("tentang.html")
+
+@app.route("/is_owner")
+def is_owner():
+    """
+    Mengecek apakah visitor adalah owner.
+    Owner = IP yang tercatat di DB.
+    """
+    user_ip = request.remote_addr
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+
+    cursor.execute("SELECT * FROM secret_codes WHERE status='active' LIMIT 1")
+    row = cursor.fetchone()
+    cursor.close()
+    conn.close()
+
+    if not row:
+        return jsonify({"owner": False})
+
+    owner_ip = row.get("owner_ip") or row.get("used_by")
+    if owner_ip and owner_ip == user_ip:
+        return jsonify({"owner": True})
+    return jsonify({"owner": False})
+
+@app.route("/set_secret/<code>")
+def set_secret(code):
+    """
+    Dipanggil sekali untuk mendaftarkan owner.
+    Contoh: buka http://localhost:5000/set_secret/RAHASIAKU
+    """
+    user_ip = request.remote_addr
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Nonaktifkan secret lama
+    cursor.execute("UPDATE secret_codes SET status='expired' WHERE status='active'")
+
+    # Tambahkan secret baru
+    cursor.execute(
+        "INSERT INTO secret_codes (code, owner_ip, status, created_at) VALUES (%s, %s, 'active', NOW())",
+        (code, user_ip)
+    )
+    conn.commit()
+    cursor.close()
+    conn.close()
+    return f"Secret {code} berhasil dibuat untuk IP {user_ip}"
 
 @app.route('/sim', methods=['GET', 'POST'])
 def sim():
