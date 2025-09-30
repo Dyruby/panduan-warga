@@ -5,6 +5,19 @@
 {% block content %}
 <h2 class="text-2xl font-bold mb-4">🔍 Hasil Pencarian: "{{ query }}"</h2>
 
+<!-- 🔎 Form pencarian tanpa riwayat -->
+<form action="{{ url_for('search') }}" method="get" autocomplete="off" class="mb-6 flex">
+  <input 
+    type="text" 
+    name="q" 
+    placeholder="Cari panduan..." 
+    value="{{ query }}" 
+    class="flex-1 p-2 rounded-l-lg bg-gray-800 text-white focus:outline-none"
+    autocomplete="new-password"
+  >
+  <button type="submit" class="p-2 bg-cyan-500 rounded-r-lg hover:bg-cyan-600">🔍</button>
+</form>
+
 {% if hasil %}
   <ul class="space-y-3">
     {% for item in hasil %}
