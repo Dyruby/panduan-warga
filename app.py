@@ -26,6 +26,9 @@ db_config = {
 def get_db_connection():
     return mysql.connector.connect(**db_config)
 
+# 🔒 ambil secret code dari env
+SECRET_CODE = os.getenv("SECRET_CODE", "").strip().lower()
+
 @app.route("/masukan")
 def masukan():
     return render_template("masukan.html")
@@ -48,6 +51,7 @@ def kirim():
 
     return redirect(url_for("masukan"))  # kembali ke halaman masukan kosong
 
+# Route lihat data
 @app.route("/lihat")
 def lihat():
     conn = get_db_connection()
@@ -56,7 +60,7 @@ def lihat():
     data = cursor.fetchall()
     cursor.close()
     conn.close()
-
+    
     return render_template("lihat.html", data=data)
 
 # 🔹 Edit masukan
@@ -91,29 +95,40 @@ def hapus(id):
     conn.close()
     return redirect(url_for("lihat"))
 
+# Route search
 @app.route("/search")
 def search():
     query = request.args.get("q", "").lower()
 
-    # Mapping keyword → route navbar
     keyword_mapping = {
         "sim": "/panduan_sim",
         "buat sim": "/panduan_sim",
         "perpanjang sim": "/panduan_sim",
-
         "petani": "/panduan_bertani_di_rawa",
         "pertanian": "/panduan_bertani_di_rawa",
         "padi": "/panduan_bertani_di_rawa",
-
         "darurat": "/bantuan_layanan_darurat",
         "ambulans": "/bantuan_layanan_darurat",
         "polisi": "/bantuan_layanan_darurat",
         "pemadam": "/bantuan_layanan_darurat",
-
         "hukum": "/panduan_hukum",
         "peraturan": "/panduan_hukum",
         "uu": "/panduan_hukum",
     }
+
+    # 🔒 cek kode rahasia
+    if SECRET_CODE and query == SECRET_CODE:
+        return redirect(url_for("lihat"))
+
+    hasil = []
+    if query in keyword_mapping:
+        hasil.append({
+            "judul": query.title(),
+            "konten": f"Panduan terkait {query}",
+            "link": keyword_mapping[query]
+        })
+
+    return render_template("search.html", query=query, hasil=hasil)
 
     # cek keyword ada di mapping → redirect langsung
     for key, route in keyword_mapping.items():
