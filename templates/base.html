@@ -135,7 +135,6 @@
     💰 <span>Harga & Komunitas</span>
   </a>
 `,
-
       darurat: `
         <a href="/bantuan_layanan_darurat" class="hover:text-cyan-300 transition">🚨 Nomor Darurat</a>
         <a href="/pertolongan_pertama" class="hover:text-green-300 transition">🩹 Pertolongan Pertama</a>
@@ -150,7 +149,7 @@
       "/panduan_sim": "sim",
       "/jenis_sim": "sim",
       "/pengarahan": "sim",
-      "/panduan_bertani_di_rawa": "petani",
+      "/panduan_bertani": "petani",
       "/harga_pupuk": "petani",
       "/teknik_bertani": "petani",
       "/bantuan_layanan_darurat": "darurat",
@@ -173,12 +172,17 @@
     }
 
     document.querySelectorAll('#logo-menu a').forEach(link => {
-      link.addEventListener('click', () => {
-        const href = link.getAttribute('href');
-        const category = categoryMap[href] || null;
-        updateNav(category);
-      });
-    });
+  link.addEventListener('click', () => {
+    const href = link.getAttribute('href');
+
+    // Ambil kategori langsung dari teks menu
+    if (href.includes("sim")) updateNav("sim");
+    else if (href.includes("bertani")) updateNav("petani");
+    else if (href.includes("darurat")) updateNav("darurat");
+    else if (href.includes("hukum")) updateNav("hukum");
+    else updateNav(null);
+  });
+});
 
     document.addEventListener('click', (e) => {
       if (e.target.closest('a')?.getAttribute('href') === '/') {
