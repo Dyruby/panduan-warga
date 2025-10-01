@@ -1,23 +1,95 @@
 {% extends "base.html" %}
-{% block title %}Panduan Bertani{% endblock %}
+{% block title %}Panduan Bertani Lengkap{% endblock %}
 
 {% block content %}
 <div class="glass p-8 rounded-xl shadow-xl">
-  <h2 class="text-3xl font-bold text-green-400 mb-6">📖 Panduan Bertani</h2>
-
+  <h2 class="text-3xl font-bold text-green-400 mb-4">📖 Panduan Bertani Lengkap</h2>
   <p class="text-gray-200 mb-6">
-    Panduan dasar untuk membantu petani dalam berbagai medan dan kondisi iklim.
+    Panduan ini menggabungkan praktik tradisional dan teknologi modern agar petani dapat mengelola lahan di berbagai medan:
+    rawa, dataran tinggi, dataran rendah, pesisir, dan lahan kering.
   </p>
 
-  <ul class="list-disc list-inside text-gray-200 space-y-2">
-    <li>Dasar bertani: pengolahan lahan, pemilihan bibit, perawatan</li>
-    <li>Medan & Iklim: rawa, dataran tinggi/rendah, pesisir, lahan kering</li>
-    <li>Irigasi: sistem tadah hujan, tetes, sprinkle</li>
-    <li>Cuaca & Musim: kalender tanam sesuai prediksi cuaca</li>
-  </ul>
+  <!-- Ringkasan Navigasi Cepat -->
+  <div class="grid md:grid-cols-3 gap-4 mb-6">
+    <div class="p-4 glass rounded">
+      <h3 class="font-semibold text-green-300 mb-2">Dasar Bertani</h3>
+      <p class="text-sm text-gray-200">Pengolahan lahan, pemilihan bibit, manajemen nutrisi, rotasi tanaman.</p>
+    </div>
+    <div class="p-4 glass rounded">
+      <h3 class="font-semibold text-green-300 mb-2">Irigasi & Cuaca</h3>
+      <p class="text-sm text-gray-200">Sistem tetes, sprinkler, sensor kelembaban, kalender tanam berbasis BMKG.</p>
+    </div>
+    <div class="p-4 glass rounded">
+      <h3 class="font-semibold text-green-300 mb-2">Teknologi & Komunitas</h3>
+      <p class="text-sm text-gray-200">Drone, IoT, marketplace, Gapoktan, pelatihan online.</p>
+    </div>
+  </div>
+
+  <!-- Detail -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-green-300 mb-2">🌱 Dasar & Praktik Lapangan</h3>
+    <ul class="list-disc list-inside text-gray-200 space-y-2">
+      <li><strong>Pengolahan lahan:</strong> bajak/rotary untuk tanah berat, bedengan pada lahan basah, conservation tillage untuk lahan rawan erosi.</li>
+      <li><strong>Pemilihan bibit & benih:</strong> gunakan benih bersertifikat, pilih varietas lokal unggul yang telah uji adaptasi.</li>
+      <li><strong>Rotasi & intercropping:</strong> untuk memutus siklus hama dan menjaga kesuburan.</li>
+      <li><strong>Penanganan pasca panen sederhana:</strong> pengeringan, penyimpanan aman, grading untuk harga jual lebih baik.</li>
+    </ul>
+  </section>
+
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-green-300 mb-2">🏞 Medan & Strategi</h3>
+    <div class="grid md:grid-cols-2 gap-4">
+      <div>
+        <h4 class="font-semibold text-green-200">Rawa / Lahan Basah</h4>
+        <p class="text-gray-200 text-sm mb-2">Pembuatan bedengan, sistem drainase, kontrol pH (kapur jika asam), pengendalian hama air.</p>
+
+        <h4 class="font-semibold text-green-200">Dataran Tinggi</h4>
+        <p class="text-gray-200 text-sm mb-2">Tanaman hortikultura (sayur, stroberi, kopi). Perlu proteksi embun beku dan mulsa untuk menahan suhu.</p>
+      </div>
+      <div>
+        <h4 class="font-semibold text-green-200">Dataran Rendah & Sawah</h4>
+        <p class="text-gray-200 text-sm mb-2">Pemilihan varietas padi adaptif, pengaturan air, penggunaan pupuk berdasarkan uji tanah.</p>
+
+        <h4 class="font-semibold text-green-200">Lahan Kering & Pesisir</h4>
+        <p class="text-gray-200 text-sm mb-2">Konservasi air (embung, terrace), varietas tahan kekeringan / toleran salinitas, agroforestry untuk buffer.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-green-300 mb-2">💧 Irigasi Modern & Manajemen Air</h3>
+    <ul class="list-disc list-inside text-gray-200 space-y-2">
+      <li><strong>Irigasi tetes (drip):</strong> efisien, cocok untuk lahan sempit dan hortikultura; memungkinkan fertigation.</li>
+      <li><strong>Sprinkler:</strong> cocok untuk lahan tidak rata; hemat tenaga namun butuh energi untuk pompa.</li>
+      <li><strong>Sensor kelembaban & kontrol otomatis:</strong> mengurangi pemborosan air, cocok digabungkan dengan panel surya untuk pompa.</li>
+      <li><strong>Tadah hujan & penyimpanan:</strong> embung kecil untuk cadangan musim kemarau.</li>
+    </ul>
+  </section>
+
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-green-300 mb-2">🌦 Cuaca, Musim & Kalender Tanam</h3>
+    <p class="text-gray-200 mb-3">Gunakan prakiraan BMKG & data lokal untuk membuat kalender tanam: masa tanam, masa panen, dan rotasi sesuai musim hujan/kemarau.</p>
+    <ul class="list-disc list-inside text-gray-200 space-y-2">
+      <li>Integrasikan prediksi curah hujan untuk menghindari masa tanam saat potensi kehilangan hasil tinggi.</li>
+      <li>Varietas singkat umur untuk area dengan musim tidak stabil.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h3 class="text-2xl font-semibold text-green-300 mb-2">⚙ Teknologi yang Bisa Diadaptasi</h3>
+    <ul class="list-disc list-inside text-gray-200 space-y-2">
+      <li>Drone (pemantauan NDVI, penyemprotan presisi).</li>
+      <li>IoT: sensor pH, kelembaban, suhu, dan gateway ke cloud untuk notifikasi.</li>
+      <li>Hidroponik / vertical farming untuk lahan terbatas dan produksi off-season.</li>
+      <li>Platform analitik cuaca & pasar untuk keputusan panen dan jual.</li>
+    </ul>
+  </section>
 
   <div class="mt-8 text-center">
-    <a href="/" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+    <a href="/tanaman_nutrisi" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition mr-3">
+      ➜ Lihat Tanaman & Nutrisi
+    </a>
+    <a href="/" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full transition">
       ⬅ Kembali ke Beranda
     </a>
   </div>

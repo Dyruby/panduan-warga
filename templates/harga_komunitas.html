@@ -3,38 +3,56 @@
 
 {% block content %}
 <div class="glass p-8 rounded-xl shadow-xl">
-  <h2 class="text-3xl font-bold text-yellow-400 mb-6">💰 Harga & Komunitas</h2>
+  <h2 class="text-3xl font-bold text-yellow-400 mb-4">💰 Harga & Komunitas</h2>
+  <p class="text-gray-200 mb-6">Data pasar, harga komoditas, serta sumber komunitas & platform pemasaran.</p>
 
-  <p class="text-gray-200 mb-6">
-    Informasi harga pupuk, hasil pertanian, serta wadah komunikasi antar petani.
-  </p>
+  <!-- Tabel Harga Sample -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-yellow-300 mb-2">📊 Harga Komoditas (Contoh)</h3>
+    <p class="text-sm text-gray-400 mb-2">Harga contoh — sebaiknya dihubungkan dengan backend/CSV untuk update realtime.</p>
+    <table class="table-auto w-full text-left border border-gray-700 text-gray-200 mb-4">
+      <thead>
+        <tr class="bg-yellow-700 text-white">
+          <th class="p-3 border">Komoditas</th>
+          <th class="p-3 border">Harga Rata-rata (Rp/kg)</th>
+          <th class="p-3 border">Area / Tanggal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="p-3 border">Padi (Gabah)</td><td class="p-3 border">6.000</td><td class="p-3 border">Jawa Tengah • 2025-09</td></tr>
+        <tr><td class="p-3 border">Jagung</td><td class="p-3 border">5.200</td><td class="p-3 border">Kalimantan • 2025-09</td></tr>
+        <tr><td class="p-3 border">Cabai Merah</td><td class="p-3 border">25.000</td><td class="p-3 border">Jatim • 2025-09</td></tr>
+      </tbody>
+    </table>
+    <p class="text-sm text-gray-400">Tip: tarik data BPS atau database pasar lokal melalui API untuk update dinamis.</p>
+  </section>
 
-  <table class="table-auto w-full text-left border border-gray-700 text-gray-200 mb-8">
-    <thead>
-      <tr class="bg-yellow-700 text-white">
-        <th class="p-3 border">Komoditas</th>
-        <th class="p-3 border">Harga Pasar (Rp/kg)</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td class="p-3 border">Padi</td><td class="p-3 border">6.000</td></tr>
-      <tr><td class="p-3 border">Jagung</td><td class="p-3 border">5.200</td></tr>
-      <tr><td class="p-3 border">Cabai</td><td class="p-3 border">25.000</td></tr>
-    </tbody>
-  </table>
-
-  <div class="glass p-6 rounded-xl shadow-md mb-8">
-    <h3 class="text-2xl font-semibold text-white mb-3">👥 Komunitas Petani</h3>
+  <!-- Komunitas -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-yellow-300 mb-2">👥 Komunitas & Kelembagaan</h3>
     <ul class="list-disc list-inside text-gray-200 space-y-2">
-      <li>Forum diskusi online</li>
-      <li>Konsultasi dengan pakar</li>
-      <li>Sharing pengalaman sukses</li>
+      <li>Gapoktan & KWT: wadah organisasi lokal untuk bantuan teknis & akses modal.</li>
+      <li>Forum online: grup WhatsApp/Telegram lokal, forum berbasis web untuk sharing teknik & pasar.</li>
+      <li>Program pemerintah & LSM: subsidi pupuk, bantuan bibit, pelatihan mekanisasi.</li>
     </ul>
-  </div>
+  </section>
+
+  <!-- Marketplace & Traceability -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-yellow-300 mb-2">🛒 Marketplace & Traceability</h3>
+    <p class="text-gray-200 mb-2">Beberapa platform agritech memfasilitasi penjualan langsung ke pembeli atau supermarket — meningkatkan margin petani.</p>
+    <ul class="list-disc list-inside text-gray-200 space-y-2">
+      <li>Platform e-commerce khusus hasil pertanian: unggah stok, foto, sertifikasi organik bila ada.</li>
+      <li>Sistem traceability sederhana: catat batch panen, tanggal, pupuk & pestisida yang digunakan untuk nilai jual lebih tinggi.</li>
+    </ul>
+  </section>
 
   <div class="mt-8 text-center">
-    <a href="/" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full transition">
-      ⬅ Kembali ke Beranda
+    <a href="/panduan_bertani" class="inline-block bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-6 rounded-full transition mr-3">
+      ⬅ Kembali ke Panduan
+    </a>
+    <a href="/" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Beranda
     </a>
   </div>
 </div>

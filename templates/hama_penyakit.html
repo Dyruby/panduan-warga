@@ -3,30 +3,78 @@
 
 {% block content %}
 <div class="glass p-8 rounded-xl shadow-xl">
-  <h2 class="text-3xl font-bold text-red-400 mb-6">🐛 Hama & Penyakit</h2>
+  <h2 class="text-3xl font-bold text-red-400 mb-4">🐛 Hama & Penyakit</h2>
+  <p class="text-gray-200 mb-6">Panduan deteksi, pencegahan, dan pengendalian (IPM) hama & penyakit yang umum menyerang tanaman di berbagai medan.</p>
 
-  <p class="text-gray-200 mb-6">
-    Beberapa hama dan penyakit tanaman umum serta cara pengendaliannya.
-  </p>
-
-  <table class="table-auto w-full text-left border border-gray-700 text-gray-200 mb-8">
+  <!-- Tabel Hama & Penyakit -->
+  <table class="table-auto w-full text-left border border-gray-700 text-gray-200 mb-6">
     <thead>
       <tr class="bg-red-700 text-white">
         <th class="p-3 border">Hama / Penyakit</th>
-        <th class="p-3 border">Tanaman</th>
-        <th class="p-3 border">Pengendalian</th>
+        <th class="p-3 border">Tanaman Rentan</th>
+        <th class="p-3 border">Gejala</th>
+        <th class="p-3 border">Pengendalian Rekomendasi</th>
       </tr>
     </thead>
     <tbody>
-      <tr><td class="p-3 border">Wereng</td><td class="p-3 border">Padi</td><td class="p-3 border">Pestisida nabati / insektisida</td></tr>
-      <tr><td class="p-3 border">Ulat Grayak</td><td class="p-3 border">Jagung</td><td class="p-3 border">Musuh alami (Trichogramma)</td></tr>
-      <tr><td class="p-3 border">Busuk Daun</td><td class="p-3 border">Kentang, Tomat</td><td class="p-3 border">Fungisida & drainase baik</td></tr>
+      <tr>
+        <td class="p-3 border">Wereng</td>
+        <td class="p-3 border">Padi</td>
+        <td class="p-3 border">Daun keriting, kerdil, bercak</td>
+        <td class="p-3 border">IPM: musuh alami, insektisida selektif, sanitasi tanaman</td>
+      </tr>
+      <tr>
+        <td class="p-3 border">Ulat Grayak</td>
+        <td class="p-3 border">Jagung, sayur</td>
+        <td class="p-3 border">Lubang pada daun, defoliasi</td>
+        <td class="p-3 border">Bt (Bacillus thuringiensis), predator & parasit, perangkap</td>
+      </tr>
+      <tr>
+        <td class="p-3 border">Busuk Akar / Fusarium</td>
+        <td class="p-3 border">Kentang, tomat</td>
+        <td class="p-3 border">Layu, busuk pada akar & pangkal batang</td>
+        <td class="p-3 border">Sanitasi, rotasi tanaman, fungisida & varietas tahan</td>
+      </tr>
     </tbody>
   </table>
 
+  <!-- Deteksi Dini -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-red-300 mb-2">🔎 Deteksi Dini & Teknologi Diagnosis</h3>
+    <ul class="list-disc list-inside text-gray-200 space-y-2">
+      <li>Monitoring rutin: inspeksi daun bawah & permukaan tanah.</li>
+      <li>Aplikasi mobile untuk upload foto gejala & mendapatkan diagnosis awal.</li>
+      <li>Kamera multispektral & analitik citra (NDVI) untuk mendeteksi stres tanaman sebelum gejala visual.</li>
+    </ul>
+  </section>
+
+  <!-- IPM -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-red-300 mb-2">🛡 Pengendalian Terpadu (IPM)</h3>
+    <ol class="list-decimal list-inside text-gray-200 space-y-2">
+      <li>Praktik preventif: rotasi, sanitasi lahan, varietas tahan.</li>
+      <li>Biologi: pelepasan musuh alami (parasitoid & predator).</li>
+      <li>Teknis: perangkap feromon, traps, barrier crops.</li>
+      <li>Kimia: gunakan insektisida / fungisida selektif & sesuai dosis; hindari overuse.</li>
+    </ol>
+  </section>
+
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-red-300 mb-2">🧪 Pencegahan Resistansi</h3>
+    <p class="text-gray-200 mb-2">Untuk mencegah resistansi hama terhadap pestisida:</p>
+    <ul class="list-disc list-inside text-gray-200 space-y-2">
+      <li>Rotasi mode aksi pestisida secara berkala.</li>
+      <li>Gunakan dosis tepat dan pencampuran pestisida yang dianjurkan instruksi.</li>
+      <li>Gabungkan pengendalian biologi & mekanis.</li>
+    </ul>
+  </section>
+
   <div class="mt-8 text-center">
-    <a href="/" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition">
-      ⬅ Kembali ke Beranda
+    <a href="/alat_teknologi" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition mr-3">
+      ➜ Lihat Alat & Teknologi
+    </a>
+    <a href="/tanaman_nutrisi" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Kembali ke Tanaman
     </a>
   </div>
 </div>

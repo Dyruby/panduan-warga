@@ -3,30 +3,89 @@
 
 {% block content %}
 <div class="glass p-8 rounded-xl shadow-xl">
-  <h2 class="text-3xl font-bold text-emerald-400 mb-6">🌱 Tanaman & Nutrisi</h2>
-
+  <h2 class="text-3xl font-bold text-emerald-400 mb-4">🌱 Tanaman & Nutrisi</h2>
   <p class="text-gray-200 mb-6">
-    Jenis tanaman utama dan kebutuhan nutrisi untuk hasil optimal.
+    Informasi lengkap tentang jenis tanaman cocok tiap medan, kebutuhan nutrisi, uji tanah, dan teknik pemupukan modern.
   </p>
 
-  <table class="table-auto w-full text-left border border-gray-700 text-gray-200 mb-8">
-    <thead>
-      <tr class="bg-emerald-700 text-white">
-        <th class="p-3 border">Tanaman</th>
-        <th class="p-3 border">Nutrisi Utama</th>
-        <th class="p-3 border">Jenis Pupuk</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td class="p-3 border">Padi</td><td class="p-3 border">Nitrogen, Fosfor</td><td class="p-3 border">Urea, NPK</td></tr>
-      <tr><td class="p-3 border">Jagung</td><td class="p-3 border">Nitrogen, Kalium</td><td class="p-3 border">ZA, Pupuk kandang</td></tr>
-      <tr><td class="p-3 border">Sayuran</td><td class="p-3 border">Kalsium, Magnesium</td><td class="p-3 border">Kompos, Dolomit</td></tr>
-    </tbody>
-  </table>
+  <!-- Jenis Tanaman & Rekomendasi Medan -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-emerald-300 mb-2">🧭 Jenis Tanaman & Medan</h3>
+    <dl class="text-gray-200">
+      <dt class="font-semibold mt-2">Padi</dt>
+      <dd class="ml-4 text-sm">Cocok di dataran rendah & sawah; pilih varietas sesuai musim & ketersediaan air.</dd>
+
+      <dt class="font-semibold mt-2">Jagung</dt>
+      <dd class="ml-4 text-sm">Lebih toleran lahan sedikit kering; rotasi baik dengan kedelai atau kacang.</dd>
+
+      <dt class="font-semibold mt-2">Sayuran (hatek hortikultura)</dt>
+      <dd class="ml-4 text-sm">Butuh nutrisi seimbang; cocok di dataran tinggi dengan pengairan terkontrol.</dd>
+
+      <dt class="font-semibold mt-2">Perkebunan (kopi, kakao)</dt>
+      <dd class="ml-4 text-sm">Perlakukan konservasi tanah, naungan, dan manajemen penyakit khusus.</dd>
+    </dl>
+  </section>
+
+  <!-- Analisis Tanah -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-emerald-300 mb-2">🔬 Analisis Tanah & pH</h3>
+    <p class="text-gray-200 mb-2">Uji tanah wajib untuk mengetahui pH, kadar bahan organik, NPK, dan mikro. Rekomendasi:</p>
+    <ul class="list-disc list-inside text-gray-200 space-y-2">
+      <li>pH ideal umumnya 5.5–7 untuk banyak tanaman; lahan asam perlu kapur (dolomit) sesuai rekomendasi uji tanah.</li>
+      <li>Bahan organik ditingkatkan dengan kompos, pupuk kandang terurai.</li>
+      <li>Jika ada kekurangan mikro (Zn, B, Mn), berikan pupuk daun atau suplemen mikro.</li>
+    </ul>
+  </section>
+
+  <!-- Tabel Unsur Hara -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-emerald-300 mb-2">🧪 Unsur Hara Utama</h3>
+    <table class="table-auto w-full text-left border border-gray-700 text-gray-200 mb-4">
+      <thead>
+        <tr class="bg-emerald-700 text-white">
+          <th class="p-3 border">Unsur</th>
+          <th class="p-3 border">Fungsi</th>
+          <th class="p-3 border">Sumber / Contoh Pupuk</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="p-3 border">Nitrogen (N)</td>
+          <td class="p-3 border">Pertumbuhan daun & vegetatif</td>
+          <td class="p-3 border">Urea, kompos, pupuk kandang</td>
+        </tr>
+        <tr>
+          <td class="p-3 border">Fosfor (P)</td>
+          <td class="p-3 border">Pengembangan akar & pembungaan</td>
+          <td class="p-3 border">SP-36, bone meal, fosfat alami</td>
+        </tr>
+        <tr>
+          <td class="p-3 border">Kalium (K)</td>
+          <td class="p-3 border">Kualitas buah & ketahanan</td>
+          <td class="p-3 border">KCl, K2SO4</td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="text-sm text-gray-400">Catatan: dosis harus disesuaikan hasil uji tanah & fase pertumbuhan.</p>
+  </section>
+
+  <!-- Teknik Pemupukan Modern -->
+  <section class="mb-6">
+    <h3 class="text-2xl font-semibold text-emerald-300 mb-2">📈 Teknik Pemupukan Modern</h3>
+    <ul class="list-disc list-inside text-gray-200 space-y-2">
+      <li><strong>Fertigation:</strong> pupuk masuk lewat irigasi tetes, efisien & hemat biaya pupuk.</li>
+      <li><strong>Split application:</strong> membagi dosis sesuai fase pertumbuhan untuk mengurangi kehilangan.</li>
+      <li><strong>Pupuk hayati & mikroba:</strong> dapat meningkatkan ketersediaan nutrisi dan struktur tanah.</li>
+      <li><strong>Precision farming & variable rate:</strong> sensor & peta lahan menentukan dosis variabel tiap zona.</li>
+    </ul>
+  </section>
 
   <div class="mt-8 text-center">
-    <a href="/" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-full transition">
-      ⬅ Kembali ke Beranda
+    <a href="/hama_penyakit" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-full transition mr-3">
+      ➜ Lihat Hama & Penyakit
+    </a>
+    <a href="/panduan_bertani" class="inline-block bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Kembali ke Panduan
     </a>
   </div>
 </div>
