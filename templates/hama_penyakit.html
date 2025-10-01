@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Hama & Penyakit{% endblock %}
+
+{% block content %}
+<div class="glass p-8 rounded-xl shadow-xl">
+  <h2 class="text-3xl font-bold text-red-400 mb-6">🐛 Hama & Penyakit</h2>
+
+  <p class="text-gray-200 mb-6">
+    Beberapa hama dan penyakit tanaman umum serta cara pengendaliannya.
+  </p>
+
+  <table class="table-auto w-full text-left border border-gray-700 text-gray-200 mb-8">
+    <thead>
+      <tr class="bg-red-700 text-white">
+        <th class="p-3 border">Hama / Penyakit</th>
+        <th class="p-3 border">Tanaman</th>
+        <th class="p-3 border">Pengendalian</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="p-3 border">Wereng</td><td class="p-3 border">Padi</td><td class="p-3 border">Pestisida nabati / insektisida</td></tr>
+      <tr><td class="p-3 border">Ulat Grayak</td><td class="p-3 border">Jagung</td><td class="p-3 border">Musuh alami (Trichogramma)</td></tr>
+      <tr><td class="p-3 border">Busuk Daun</td><td class="p-3 border">Kentang, Tomat</td><td class="p-3 border">Fungisida & drainase baik</td></tr>
+    </tbody>
+  </table>
+
+  <div class="mt-8 text-center">
+    <a href="/" class="inline-block bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Kembali ke Beranda
+    </a>
+  </div>
+</div>
+{% endblock %}

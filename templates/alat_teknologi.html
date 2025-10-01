@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Alat & Teknologi{% endblock %}
+
+{% block content %}
+<div class="glass p-8 rounded-xl shadow-xl">
+  <h2 class="text-3xl font-bold text-blue-400 mb-6">⚒️ Alat & Teknologi</h2>
+
+  <p class="text-gray-200 mb-6">
+    Perkembangan teknologi memudahkan petani meningkatkan produktivitas.
+  </p>
+
+  <ul class="list-disc list-inside text-gray-200 mb-6 space-y-2">
+    <li>Alat tradisional: cangkul, bajak, sabit</li>
+    <li>Alat modern: traktor, pompa air, cultivator</li>
+    <li>Smart Farming: sensor tanah, aplikasi cuaca, drone pertanian</li>
+  </ul>
+
+  <table class="table-auto w-full text-left border border-gray-700 text-gray-200">
+    <thead>
+      <tr class="bg-blue-700 text-white">
+        <th class="p-3 border">Teknologi</th>
+        <th class="p-3 border">Fungsi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="p-3 border">Drone Pertanian</td><td class="p-3 border">Penyemprotan & pemetaan lahan</td></tr>
+      <tr><td class="p-3 border">Sensor Kelembaban</td><td class="p-3 border">Mengetahui kebutuhan air tanah</td></tr>
+    </tbody>
+  </table>
+
+  <div class="mt-8 text-center">
+    <a href="/" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Kembali ke Beranda
+    </a>
+  </div>
+</div>
+{% endblock %}

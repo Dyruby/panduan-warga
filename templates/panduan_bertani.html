@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Panduan Bertani{% endblock %}
+
+{% block content %}
+<div class="glass p-8 rounded-xl shadow-xl">
+  <h2 class="text-3xl font-bold text-green-400 mb-6">📖 Panduan Bertani</h2>
+
+  <p class="text-gray-200 mb-6">
+    Panduan dasar untuk membantu petani dalam berbagai medan dan kondisi iklim.
+  </p>
+
+  <ul class="list-disc list-inside text-gray-200 space-y-2">
+    <li>Dasar bertani: pengolahan lahan, pemilihan bibit, perawatan</li>
+    <li>Medan & Iklim: rawa, dataran tinggi/rendah, pesisir, lahan kering</li>
+    <li>Irigasi: sistem tadah hujan, tetes, sprinkle</li>
+    <li>Cuaca & Musim: kalender tanam sesuai prediksi cuaca</li>
+  </ul>
+
+  <div class="mt-8 text-center">
+    <a href="/" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-full transition">
+      ⬅ Kembali ke Beranda
+    </a>
+  </div>
+</div>
+{% endblock %}

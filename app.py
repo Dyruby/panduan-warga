@@ -218,9 +218,25 @@ def hukum_sim():
 def tutorial_sim():
     return render_template("tutorial_sim.html")
 
-@app.route('/panduan_bertani_di_rawa')
-def panduan_bertani_di_rawa():
-    return render_template("panduan_bertani_di_rawa.html")
+@app.route('/panduan_bertani')
+def panduan_bertani():
+    return render_template("panduan_bertani.html")
+
+@app.route('/tanaman_nutrisi')
+def tanaman_nutrisi():
+    return render_template("tanaman_nutrisi.html")
+
+@app.route('/hama_penyakit')
+def hama_penyakit():
+    return render_template("hama_penyakit.html")
+
+@app.route('/harga_komunitas')
+def harga_komunitas():
+    return render_template("harga_komunitas.html")
+
+@app.route('/alat_teknologi')
+def alat_teknologi():
+    return render_template("alat_teknologi.html")
 
 @app.route('/bantuan_layanan_darurat')
 def bantuan_layanan_darurat():
